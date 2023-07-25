@@ -9,6 +9,6 @@ defineProps({ users: Object })
     <Layout>
         <Head title="Welcome" />
         <h1>Welcome</h1>
-        <p>Hello welcome {{ users }} to your first Inertia app!</p>
+        <p>Hello welcome {{ users }} to your first Inertia apdtduhnvfidgubhp!</p>
     </Layout>
 </template>

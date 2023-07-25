@@ -9,7 +9,8 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function index(): \Inertia\Response
+    {
         $users = User::all();
         return Inertia::render('User/Index',['users' => $users]);
        // return User::all(['name','email','qrCode','role_id']);
