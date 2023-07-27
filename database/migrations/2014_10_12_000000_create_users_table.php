@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');//los caracteres
             $table->string('email');
             $table->string('qrCode');
+            $table->string('google_id')->nullable();
             $table->unsignedBigInteger('role_id')->constrained();
             $table->timestamps();
         });

@@ -54,6 +54,8 @@ const refreshUser = (userId) => {
         </table>
     </div>
 
+    <q-btn color="white" text-color="black" label="Standard" />
+
 
 </template>
 
