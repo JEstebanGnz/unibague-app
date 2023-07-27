@@ -14,17 +14,12 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/index',[\App\Http\Controllers\UserController::class,'index']);
-Route::get('/user/{id}',[\App\Http\Controllers\UserController::class,'show']);
-Route::delete('/user/{id}',[\App\Http\Controllers\UserController::class,'delete']);
-Route::patch('/user/{id}',[\App\Http\Controllers\UserController::class,'update']);
-Route::post('/user/create',[\App\Http\Controllers\UserController::class,'create']);
 
-Route::get('/users/{id}',[\App\Http\Controllers\RoleController::class,'show']);
-Route::get('/users/{id}',[\App\Http\Controllers\RoleController::class,'show']);
-Route::get('/users/{id}',[\App\Http\Controllers\RoleController::class,'show']);
-Route::get('/users/{id}',[\App\Http\Controllers\RoleController::class,'show']);
-Route::get('/users/{id}',[\App\Http\Controllers\RoleController::class,'show']);
+
+Route::resource('roles', \App\Http\Controllers\RoleController::class);
+Route::resource('users', \App\Http\Controllers\UserController::class);
+Route::resource('permissions', \App\Http\Controllers\PermissionController::class);
+Route::resource('modules', \App\Http\Controllers\ModuleController::class);
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
