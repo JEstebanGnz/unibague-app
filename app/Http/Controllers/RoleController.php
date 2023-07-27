@@ -2,63 +2,54 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Role;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(): \Inertia\Response
     {
-        //
+        $roles = Role::all();
+        return Inertia::render('Role/Index', ['rolesProp' => $roles]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(Request $request, Role $role)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+        ]);
+
+        Role::create($request->post());
+        return redirect()->route('roles.index')->with('success', 'Company has been created successfully.');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function create(Role $roles)
     {
-        //
+        return Inertia::render('Role/Create', ['roles' => $roles]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Role $roles)
     {
-        //
+        return Inertia::render('Role/Index', ['roles' => $roles]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+
+        ]);
+
+        $role->fill($request->post())->save();
+        return redirect()->route('/roles')->with('success', 'Company Has Been updated successfully');
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy(Role $roles)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $roles->delete();
+        return Inertia::render('Role/Index')->with('success', 'Company has been created successfully.');
     }
 }

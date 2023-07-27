@@ -37,6 +37,7 @@ use PhpParser\Node\Expr\AssignOp\Mod;
  */
 class Permission extends Model
 {
+    protected $guarded = [];
     public function roles () :HasMany {
         return $this->hasMany(Role::class);
     }

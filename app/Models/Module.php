@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  *
  * @property int $id
  * @property string $name
- * @property string $permission_name
+ * @property string $permission_id
  * @property string $icon
- * @property int $visble
+ * @property int $visible
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Permission> $permissions
@@ -27,10 +27,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Module wherePermissionName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Module whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Module whereVisble($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Module wherePermissionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Module whereVisible($value)
  * @mixin \Eloquent
  */
 class Module extends Model
 {
+    protected $guarded = [];
     public function permissions(): HasMany
     {
         return $this->hasMany(Permission::class);

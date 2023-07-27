@@ -1,32 +1,7 @@
 <script setup>
-import {defineProps, onMounted, ref} from 'vue';
+import { defineProps } from 'vue';
 
-const props = defineProps({usersProp: Array});
-
-const users = ref([])
-
-onMounted(() => {
-    users.value = props.usersProp
-})
-
-const deleteUser = async (userId) =>
-{
-    if (!confirm ('seguro desea borrar?')) {
-        return
-    }
-    const url = `users/${userId}`;
-    try {
-        await axios.delete(url);
-        refreshModules(userId)
-    } catch (error) {
-        alert('Hubo un problema al borrar el user seleccionado')
-    }
-}
-
-
-const refreshUser = (userId) => {
-    users.value = users.value.filter( (user) =>  { return (user.id !== userId) })
-}
+defineProps({ user: Object });
 
 </script>
 <template>
@@ -41,14 +16,11 @@ const refreshUser = (userId) => {
             </tr>
             </thead>
             <tbody>
-            <tr v-for="user in users" :key="user.id">
+            <tr>
                 <td>{{ user.name }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.qrCode }}</td>
                 <td>{{ user.role_id }}</td>
-                <td>
-                    <button @click="deleteUser(user.id)">Borrar Usuario</button>
-                </td>
             </tr>
             </tbody>
         </table>

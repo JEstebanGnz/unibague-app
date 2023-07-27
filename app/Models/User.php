@@ -44,7 +44,7 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    protected $guarded = [];
 
     /**
      * @return BelongsTo
@@ -65,16 +65,8 @@ class User extends Authenticatable
         return Hash::make($token);
     }
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+
+
 
     /**
      * The attributes that should be hidden for serialization.

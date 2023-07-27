@@ -16,9 +16,9 @@ class CreateModulesTable extends Migration
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
             $table->string('name',40);//los caracteres
-            $table->string('permission_name',40);//los caracteres
+            $table->string('permission_id',40);//los caracteres
             $table->string('icon');
-            $table->boolean('visble');
+            $table->boolean('visible');
             $table->timestamps();
         });
     }

@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Module;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class ModuleSeeder extends Seeder
 {
@@ -16,28 +15,34 @@ class ModuleSeeder extends Seeder
     public function run()
     {
 
-        DB::table('modules')->insert([
+        Module::create([
             'name' => 'carnet',
+            'permission_id' => '1',
             'icon' => '/../../public/assets/Unibague_logo.jpg',
             'visible' => true,
         ]);
 
-        DB::table('modules')->insert([
+        Module::create([
             'name' => 'appSiga',
+            'permission_id' => '2',
             'icon' => '/../../public/assets/Unibague_logo.jpg',
             'visible' => true,
         ]);
 
-        DB::table('modules')->insert([
+        Module::create([
             'name' => 'carnetScaner',
+            'permission_id' => '3',
             'icon' => '/../../public/assets/Unibague_logo.jpg',
             'visible' => false,
         ]);
 
-        DB::table('modules')->insert([
+        Module::create([
             'name' => 'adminPanel',
+            'permission_id' => '4',
             'icon' => '/../../public/assets/Unibague_logo.jpg',
             'visible' => false,
+
         ]);
+
     }
 }
