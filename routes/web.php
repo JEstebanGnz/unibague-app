@@ -28,10 +28,15 @@ Route::get('/login/google/redirect', function () {
 })->name('redirect');
 
 Route::get('/login/google/callback', function () {
-    $googleUser = Socialite::driver('google')->user();
-
+    try {
+        $googleUser = Socialite::driver('google')->user();
+    } catch (\Laravel\Socialite\Two\InvalidStateException $e){
+        return redirect()->route('redirect');
+    }
     $email =explode ("@",$googleUser->email);
-    if ($email[1] != "estudiantesunibague.edu.co" || $email[1] !="unibague.edu.co"){
+
+    if (!str_contains($email[1],'unibague.edu.co'))
+    {
         return (response("Utiliza tu correo institucional xfavor"));
     }
 
