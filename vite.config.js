@@ -2,6 +2,9 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 
+
+// Vue.use(VueRouter)
+
 export default defineConfig({
     plugins: [
         laravel({

@@ -60,6 +60,22 @@ Route::get('/', function () {
 
 });
 
+Route::get('/carnet', function () {
+    return Inertia::render('Carnet');
+})->name('carnet');
+
+Route::get('/siga', function () {
+    return Inertia::render('Carnet');
+})->name('siga');
+
+Route::get('/ajustes', function () {
+    return Inertia::render('Ajustes');
+})->name('ajustes');
+
+Route::get('/scanner', function () {
+    return Inertia::render('Scanner');
+})->name('scanner');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
