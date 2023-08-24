@@ -26,7 +26,6 @@ const getMobileOperatingSystem = () => {
 const handlerRedirection = () => {
     if (props.redirectType === "internal"){
         router.visit( `/${props.redirectView}`, { method: 'get' })
-        console.log( getMobileOperatingSystem() )
     }
     else {
         if (getMobileOperatingSystem() === "iOS")
@@ -41,7 +40,7 @@ const handlerRedirection = () => {
         {
             window.location.href = "https://play.google.com/store/apps/details?id=com.acies.sinu.unibague&hl=es_CO&gl=US";
         }
-        console.log( getMobileOperatingSystem() )
+
 
     }
 

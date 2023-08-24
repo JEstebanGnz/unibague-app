@@ -16,13 +16,6 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-
-Route::resource('roles', \App\Http\Controllers\RoleController::class);
-Route::resource('users', \App\Http\Controllers\UserController::class);
-Route::resource('permissions', \App\Http\Controllers\PermissionController::class);
-Route::resource('modules', \App\Http\Controllers\ModuleController::class);
-
-
 Route::get('/login/google/redirect', function () {
     return Socialite::driver('google')->redirect();
 })->name('redirect');
@@ -54,27 +47,32 @@ Route::get('/login/google/callback', function () {
 });
 
 Route::get('/', function () {
-    //return Inertia::render('Welcome', [
-       //'canLogin' => Route::has('login'),
         return redirect('/login/google/redirect');
+})->name('inicio');
 
-});
+Route::resource('roles', \App\Http\Controllers\RoleController::class);
+Route::resource('users', \App\Http\Controllers\UserController::class);
+Route::resource('permissions', \App\Http\Controllers\PermissionController::class);
+Route::resource('modules', \App\Http\Controllers\ModuleController::class);
 
 Route::get('/carnet', function () {
-    return Inertia::render('Carnet');
+    $user = User::find(1); // Obtén el usuario que deseas usar
+    $email = $user->email;
+    $qrCode = User::generateQrCode( $email); // Utiliza la función del modelo
+
+    return Inertia::render('Carnet', [
+        'qrCodee' => $qrCode, // Pasa el valor como prop
+    ]);
 })->name('carnet');
 
-Route::get('/siga', function () {
-    return Inertia::render('Carnet');
-})->name('siga');
-
 Route::get('/ajustes', function () {
-    return Inertia::render('Ajustes');
+    return Inertia::render('AdminPannel');
 })->name('ajustes');
 
 Route::get('/scanner', function () {
     return Inertia::render('Scanner');
 })->name('scanner');
+
 
 Route::middleware([
     'auth:sanctum',
