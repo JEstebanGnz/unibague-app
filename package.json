@@ -20,6 +20,8 @@
   "type": "module",
   "dependencies": {
     "@inertiajs/inertia-vue3": "^0.6.0",
+    "qrcode-svg": "^1.1.0",
+    "qrcode.vue": "^3.4.1",
     "vue-router": "^4.2.4"
   }
 }

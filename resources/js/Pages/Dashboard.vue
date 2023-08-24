@@ -1,7 +1,7 @@
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
-import Welcome from '@/Components/Module.vue';
+
 import Module from "@/Components/Module.vue";
+
 
 </script>
 
@@ -29,8 +29,8 @@ import Module from "@/Components/Module.vue";
             <Module moduleName="SIGA" icon="/Images/SIGA.svg" redirectType="external" redirectLink="carnet"></Module>
             <Module moduleName="Ajustes" icon="/Images/config.svg" redirectType="internal" redirectView="carnet"></Module>
             <Module moduleName="Scaner" icon="/Images/qrcode.svg" redirectType="internal" redirectView="carnet"></Module>
-
             <Module moduleName="Carnet" icon="/Images/carnet.svg" redirectType="internal" redirectView="carnet"></Module>
+
             <Module moduleName="SIGA" icon="/Images/SIGA.svg" redirectType="external" redirectLink="carnet"></Module>
             <Module moduleName="Ajustes" icon="/Images/config.svg" redirectType="internal" redirectView="carnet"></Module>
             <Module moduleName="Scaner" icon="/Images/qrcode.svg" redirectType="internal" redirectView="carnet"></Module>
@@ -45,20 +45,4 @@ import Module from "@/Components/Module.vue";
 
 
 </template>
-<!--<template>
-    <AppLayout title="Dashboard">
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
-            </h2>
-        </template>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <Welcome />
-                </div>
-            </div>
-        </div>
-    </AppLayout>
-</template>-->

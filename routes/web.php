@@ -16,13 +16,6 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-
-Route::resource('roles', \App\Http\Controllers\RoleController::class);
-Route::resource('users', \App\Http\Controllers\UserController::class);
-Route::resource('permissions', \App\Http\Controllers\PermissionController::class);
-Route::resource('modules', \App\Http\Controllers\ModuleController::class);
-
-
 Route::get('/login/google/redirect', function () {
     return Socialite::driver('google')->redirect();
 })->name('redirect');
@@ -54,11 +47,13 @@ Route::get('/login/google/callback', function () {
 });
 
 Route::get('/', function () {
-    //return Inertia::render('Welcome', [
-       //'canLogin' => Route::has('login'),
         return redirect('/login/google/redirect');
+})->name('inicio');
 
-});
+Route::resource('roles', \App\Http\Controllers\RoleController::class);
+Route::resource('users', \App\Http\Controllers\UserController::class);
+Route::resource('permissions', \App\Http\Controllers\PermissionController::class);
+Route::resource('modules', \App\Http\Controllers\ModuleController::class);
 
 Route::get('/carnet', function () {
     return Inertia::render('Carnet');
@@ -75,6 +70,11 @@ Route::get('/ajustes', function () {
 Route::get('/scanner', function () {
     return Inertia::render('Scanner');
 })->name('scanner');
+
+Route::get('qrcode', function () {
+
+    return QrCode::size(300)->generate('A basic example of QR code!');
+});
 
 Route::middleware([
     'auth:sanctum',
