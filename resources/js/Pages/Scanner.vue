@@ -18,7 +18,7 @@ let values = ref([]);
 const onDetect = (detectedCodes) => {
 
     codes.value = codes.value.concat(detectedCodes);
-    console.log( "array de codes", codes);
+    console.log( "array de codes",codes);
     // values.value = codes._rawValue[0].rawValue;
     //  console.log("valores de verdad", codes._rawValue[0].rawValue);
     // console.log("values",values.value);

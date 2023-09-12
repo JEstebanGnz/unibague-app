@@ -11,12 +11,12 @@ interface User {
 }
 
 const testUser: User = {
-    name: 'John Doe',
-    email: 'john@example.com',
-    title: 'Software Engineer',
+    name: 'sara',
+    email: 'sara@gmail.com',
+    title: 'student',
     title2: 'Web dev',
-    status: 'Active',
-    role: 'Owner',
+    status: 'Activo',
+    role: 'Admin',
 }
 
 const users = ref<User[]>([...Array(10).keys()].map(() => testUser))
