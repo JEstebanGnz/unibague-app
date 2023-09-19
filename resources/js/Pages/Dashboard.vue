@@ -34,7 +34,6 @@ import Module from "@/Components/Module.vue";
             <Module moduleName="SIGA" icon="/Images/SIGA.svg" redirectType="external" ></Module>
             <Module moduleName="Ajustes" icon="/Images/config.svg" redirectType="internal" redirectView="ajustes"></Module>
             <Module moduleName="Scaner" icon="/Images/qrcode.svg" redirectType="internal" redirectView="scanner"></Module>
-            <!--            <div class="left-[43.75vw] top-[28.2rem] absolute text-sky-900 text-[3.1rem] font-normal">SIGA</div>-->
         </div>
         <div class="w-full h-20 bg-unibague-blue">
             <div class="absolute text-gray-300 text-md font-normal left-5 italic">Nombre de la persona y version </div>
