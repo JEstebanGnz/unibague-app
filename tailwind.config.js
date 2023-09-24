@@ -22,7 +22,13 @@ export default {
             },
             opacity: {
                 '2': '.02',
+                '3': '.03',
+            },
+            screens: {
+                'sm':'430px',
+
             }
+
         },
     },
 

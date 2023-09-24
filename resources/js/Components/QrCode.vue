@@ -3,7 +3,7 @@ import QrcodeVue from 'qrcode.vue';
 
 const props = defineProps({code: String});
 
-const size = 500;
+const size = 190;
 </script>
 
 <template>

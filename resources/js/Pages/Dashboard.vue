@@ -27,12 +27,12 @@ import Module from "@/Components/Module.vue";
 
             <Module moduleName="Carnet" icon="/Images/carnet.svg" redirectType="internal" redirectView="carnet"></Module>
             <Module moduleName="SIGA" icon="/Images/SIGA.svg" redirectType="external" ></Module>
-            <Module moduleName="Ajustes" icon="/Images/config.svg" redirectType="internal" redirectView="ajustes"></Module>
+            <Module moduleName="Ajustes" icon="/Images/config.svg" redirectType="internal" redirectView="users"></Module>
             <Module moduleName="Scaner" icon="/Images/qrcode.svg" redirectType="internal" redirectView="scanner"></Module>
             <Module moduleName="Carnet" icon="/Images/carnet.svg" redirectType="internal" redirectView="carnet"></Module>
 
             <Module moduleName="SIGA" icon="/Images/SIGA.svg" redirectType="external" ></Module>
-            <Module moduleName="Ajustes" icon="/Images/config.svg" redirectType="internal" redirectView="ajustes"></Module>
+            <Module moduleName="Ajustes" icon="/Images/config.svg" redirectType="internal" redirectView="users"></Module>
             <Module moduleName="Scaner" icon="/Images/qrcode.svg" redirectType="internal" redirectView="scanner"></Module>
         </div>
         <div class="w-full h-20 bg-unibague-blue">
