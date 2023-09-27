@@ -1,0 +1,24 @@
+[
+    {
+        "role":"student",
+        "name": "Sara Valentina Cuy Ramírez",
+        "identification":"1005720028",
+        "user":"2420181016",
+        "currentProgram":"Ingeniería electrónica"
+    },
+    {
+        "role":"employee",
+        "name": "nombre",
+        "identification":"1005720028",
+        "user":"2420181016",
+        "department":"el departamento al que peretenece",
+        "position":"programador jr"
+    },
+    {
+        "role":"graduated",
+        "name": "Sara Valentina Cuy",
+        "identification":"2420181016",
+        "user":"user",
+        "finishedProgram":"ingenieria electronica"
+    }
+]

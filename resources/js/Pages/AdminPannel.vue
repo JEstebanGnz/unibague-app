@@ -43,7 +43,7 @@ const toggleMenu = () => {
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                         </svg>
 
-                        <span class="text-sm font-medium text-white text-xl">Ir al inicio</span>
+                        <span class="text-sm font-medium text-white text-xl"> Ir al inicio</span>
                     </a>
                 </li>
             </ul>
@@ -53,26 +53,12 @@ const toggleMenu = () => {
     <div class="flex-1">
         <div class="bg-unibague-blue">
             <div class="flex items-center justify-between h-20 px-4 sm:px-6">
-                <div class="w-fit sm:hidden" @click="toggleMenu">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white cursor-pointer">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                    </svg>
-                </div>
+
                 <h3 class="text-3xl font-medium text-white">
                     Dashboard
                 </h3>
             </div>
-            <transition name="slide" mode="out-in">
-                <div v-if="isOpen" class="min-h-screen flex flex-row bg-unibague-blue hidden sm:block flex-col w-1/6 overflow-hidden">
-                    <!-- Contenido del menú desplegable -->
-                    <!-- Puedes añadir aquí tus enlaces de menú u otros elementos -->
 
-
-
-
-
-                </div>
-            </transition>
         </div>
 
         <slot></slot>

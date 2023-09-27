@@ -44,10 +44,10 @@ const refreshRoles = (roleId) => {
                                     Name
                                 </th>
                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    Actions
+                                    Delete
                                 </th>
 
-                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"/>
+
                             </tr>
                             </thead>
 
@@ -77,8 +77,6 @@ const refreshRoles = (roleId) => {
                                         </div>
                                     </div>
                                 </td>
-
-
                             </tr>
                             </tbody>
                         </table>
@@ -89,26 +87,3 @@ const refreshRoles = (roleId) => {
     </AdminPannel>
 </template>
 
-<style scoped>
-
-.role-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.role-table th {
-    background-color: #f2f2f2;
-    padding: 12px;
-    text-align: left;
-    font-weight: bold;
-}
-
-.role-table td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-}
-
-.role-table tbody tr:hover {
-    background-color: #f9f9f9;
-}
-</style>

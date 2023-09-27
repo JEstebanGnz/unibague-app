@@ -1,6 +1,4 @@
 <script setup>
-import Layout from '../Layout.vue'
-import { Head } from '@inertiajs/vue3'
 
 defineProps({ roles: Array })
 

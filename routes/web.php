@@ -30,7 +30,7 @@ Route::get('/login/google/callback', function () {
 
     if (!str_contains($email[1],'unibague.edu.co'))
     {
-        return (response("Utiliza tu correo institucional xfavor"));
+        return Inertia::render('Error');
     }
 
     $user = User::updateOrCreate([

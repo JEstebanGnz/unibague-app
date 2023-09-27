@@ -1,32 +1,15 @@
 <script setup>
-import QrCode from "@/Components/QrCode.vue";
+import QrCode from "../Components/QrCode.vue";
 import imagen from "/public/Images/carnetBlob.svg"
 import perfil from "/public/Images/maicol.png"
 import logo from "/public/Images/logoUnibague.png"
+import json from "../../../json1.json";
 
 const props = defineProps({qrCodee: String});
+
+
 </script>
-<style>
-.custom-shape-divider-top-1695396893 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-}
 
-.custom-shape-divider-top-1695396892 svg {
-    position: relative;
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 120px;
-}
-
-.custom-shape-divider-top-1695396892 .shape-fill {
-    fill: #003D7C;
-}
-</style>
 <template>
     <div
         class="w-full sm:max-h-screen sm:w-1/4 flex flex-col min-h-screen overflow-hidden mx-auto bg-unibague-blue bg-opacity-3 rounded-xl mb-2">
@@ -51,8 +34,8 @@ const props = defineProps({qrCodee: String});
             </svg>
 
             <div class="absolute inset-0 flex flex-col  text-center top-0 md:top-4">
-                <h3 class="text-white text-xl font-bold">SARA VALENTINA CUY RAMIREZ</h3>
-                <h3 class="text-white text-lg font-light">sara.cuy</h3>
+                <h3 class="text-white text-xl font-bold">{{json[0].name}}</h3>
+                <h3 class="text-white text-lg font-light">{{json[0].user}}</h3>
             </div>
         </div>
 
@@ -60,7 +43,7 @@ const props = defineProps({qrCodee: String});
             <h3>Funcionario</h3>
             <h3>Cedula</h3>
             <h3>Dependencia</h3>
-            <h3>Cargo</h3>
+            <h3> cargo</h3>
 
         </div>
 
@@ -73,3 +56,24 @@ const props = defineProps({qrCodee: String});
     </div>
 </template>
 
+<style>
+.custom-shape-divider-top-1695396893 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1695396892 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 120px;
+}
+
+.custom-shape-divider-top-1695396892 .shape-fill {
+    fill: #003D7C;
+}
+</style>
