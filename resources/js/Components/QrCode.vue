@@ -8,4 +8,6 @@ const size = 190;
 
 <template>
     <qrcode-vue :value="code" :size="size" level="H" />
+
+
 </template>

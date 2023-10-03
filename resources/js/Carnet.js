@@ -1,5 +1,5 @@
 class Carnet {
-    constructor(image, name, user, role, identification,primaryInfo, secondaryInfo, qrCode) {
+    constructor(image, name, user, role, identification,primaryInfo, secondaryInfo, color, qrCode) {
         this.image= image;
         this.name= name;
         this.user= user;
@@ -7,6 +7,8 @@ class Carnet {
         this.identification = identification;
         this.primaryInfo = primaryInfo;
         this.secondaryInfo = secondaryInfo;
+        this.color = color;
         this.qrCode = qrCode;
     }
 }
+export default Carnet;

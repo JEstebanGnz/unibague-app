@@ -59,9 +59,12 @@ Route::get('/carnet', function () {
     $user = User::find(1); // Obtén el usuario que deseas usar
     $email = $user->email;
     $qrCode = User::generateQrCode( $email); // Utiliza la función del modelo
+    $json = \File::get('C:\laragon\www\api\json1.json');
+    $data = json_decode($json);
 
-    return Inertia::render('Carnet', [
-        'qrCodee' => $qrCode, // Pasa el valor como prop
+    return Inertia::render('CarnetContainer', [
+        'qrCode' => $qrCode,
+        'data' => $data,
     ]);
 })->name('carnet');
 

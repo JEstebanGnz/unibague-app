@@ -10,7 +10,7 @@ import Module from "@/Components/Module.vue";
     <div class="w-full min-h-screen flex flex-col bg-unibague-blue bg-opacity-2">
         <div class="w-full h-32 ">
             <div class="h-full">
-                <img class="w-fit h-full relative" src="../../../public/Images/wave.svg"
+                <img class="w-fit h-full relative" src="../../../public/Images/wave2.png"
                      alt="wave"/> </div>
             <div class="left-10 md:left-14 top-8 absolute text-white text-2xl sm:text-3xl md:text-4xl xl:text-4xl 2xl:text-5xl font-bold">
                 Unibague App
