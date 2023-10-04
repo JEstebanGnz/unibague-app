@@ -7,19 +7,24 @@ import logo from "/public/Images/logoUnibague.png"
 
 
 //const props = defineProps({qrCodee: String});
-const props = defineProps({image: String, name:String, user: String, role: String, identification:String, primaryInfo:String, secondaryInfo:String, color:String, qrCode:String});
+const props = defineProps({image: String, name:String, user: String, role: String, identification:String, primaryInfo:Array, secondaryInfo:Array, color:String, qrCode:String});
 const size = 190;
+const emit = defineEmits(['cambiarCarnet']);
 
+const changeCarnet = () => {
+    emit('cambiarCarnet');
+}
 </script>
 
 <template>
     <div class="w-full sm:max-h-screen sm:w-1/4 flex flex-col min-h-screen overflow-hidden mx-auto bg-unibague-blue bg-opacity-3 rounded-xl mb-2">
         <div>
         <div class=" relative p-4  flex lg:pt-6"  :style="{ background:color }" >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white self-start">
-                <path  stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
-            </svg>
-
+            <button class="self-start" @click="$emit('cambiarCarnet')">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white self-start">
+                    <path  stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                </svg>
+            </button>
             <div class="flex justify-center items-center w-full">
                 <img class="rounded-full w-3/5 lg:w-2/5 border-white border-solid border-2" :src="perfil" alt="">
             </div>

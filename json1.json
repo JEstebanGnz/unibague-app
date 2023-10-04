@@ -4,21 +4,21 @@
         "name": "Sara Valentina Cuy Ramírez",
         "identification":"1005720028",
         "user":"2420181016",
-        "currentProgram":"Ingeniería electrónica"
+        "currentProgram":["Ingeniería electrónica"]
     },
     {
         "role":"employee",
-        "name": "nombre",
+        "name": "Juan Sebastian Ospina Velasquez",
         "identification":"1005720028",
-        "user":"2420181016",
-        "department":"el departamento al que peretenece",
-        "position":"programador jr"
+        "user":"juan.ospina",
+        "department":["Oficina de Gestión de Tecnología, Redes y Sistemas"],
+        "position":"Programador Senior"
     },
     {
         "role":"graduated",
-        "name": "Sara Valentina Cuy",
+        "name": "Sara Valentina Cuy Ramírez",
         "identification":"2420181016",
-        "user":"user",
-        "finishedProgram":"ingenieria electronica"
+        "user":"sara.cuy",
+        "finishedProgram":["Ingeniería electrónica", "Ingeniería industrial"]
     }
 ]
