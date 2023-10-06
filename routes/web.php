@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\User;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Socialite\Facades\Socialite;
@@ -16,15 +15,12 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-Route::get('/login/google/redirect', function () {
-    return Socialite::driver('google')->redirect();
-})->name('redirect');
 
 Route::get('/login/google/callback', function () {
     try {
         $googleUser = Socialite::driver('google')->user();
     } catch (\Laravel\Socialite\Two\InvalidStateException $e){
-        return redirect()->route('redirect');
+        return redirect()->route('inicio');
     }
     $email =explode ("@",$googleUser->email);
 
@@ -38,7 +34,7 @@ Route::get('/login/google/callback', function () {
     ], [
         'name' => $googleUser->name,
         'email' => $googleUser->email,
-        'qrCode' => User::generateQrCode($googleUser->name,$googleUser->email),
+        'qrCode' => User::generateQrCode($googleUser->email),
         'role_id' => 1,
     ]);
     Auth::login($user);
@@ -47,8 +43,10 @@ Route::get('/login/google/callback', function () {
 });
 
 Route::get('/', function () {
-        return redirect('/login/google/redirect');
+    return Socialite::driver('google')->redirect();
 })->name('inicio');
+
+Route::get('/users/byToken', [\App\Http\Controllers\UserController::class,'getUserByToken']);
 
 Route::resource('roles', \App\Http\Controllers\RoleController::class);
 Route::resource('users', \App\Http\Controllers\UserController::class);
@@ -58,12 +56,12 @@ Route::resource('modules', \App\Http\Controllers\ModuleController::class);
 Route::get('/carnet', function () {
     $user = User::find(1); // Obtén el usuario que deseas usar
     $email = $user->email;
-    $qrCode = User::generateQrCode( $email); // Utiliza la función del modelo
+
     $json = \File::get('C:\laragon\www\api\json1.json');
     $data = json_decode($json);
 
     return Inertia::render('CarnetContainer', [
-        'qrCode' => $qrCode,
+        'qrCode' => $user->qrCode,
         'data' => $data,
     ]);
 })->name('carnet');
@@ -73,6 +71,7 @@ Route::get('/ajustes', function () {
 })->name('ajustes');
 
 Route::get('/scanner', function () {
+
     return Inertia::render('Scanner');
 })->name('scanner');
 

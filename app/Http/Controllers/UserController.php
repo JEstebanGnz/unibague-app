@@ -57,4 +57,13 @@ class UserController extends Controller
         $users -> delete();
         return Inertia::render('User/Index')->with('success','Company has been created successfully.');
     }
+
+    public function getUserByToken(Request $request)
+    {
+        $token = $request -> input('token');
+        $userFound = User::where('qrCode','=',$token)->first();
+        $json = \File::get('C:\laragon\www\api\json1.json');
+        $data = json_decode($json);
+        return response()->json($data);
+    }
 }

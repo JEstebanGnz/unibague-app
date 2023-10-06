@@ -9,7 +9,7 @@
             No se ha podido iniciar sesión
         </h1>
         <p class="my-2 text-gray-800">Por favor inicia sesión con el correo institucional.</p>
-        <a href="/login/google/redirect" class="w-fit">
+        <a href="/" class="w-fit">
             <button class="my-4 border rounded py-2 px-4 bg-unibague-blue text-white focus:outline-none focus:ring-2">Regresar</button>
         </a>
     </div>

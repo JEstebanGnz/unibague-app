@@ -65,7 +65,7 @@ class User extends Authenticatable
     public static function generateQrCode ($email) :string{
         $now = Carbon::now()->toDateTimeString();
         $token = $email;
-        return Hash::make($token);
+        return Hash::make($token.$now);
     }
 
 

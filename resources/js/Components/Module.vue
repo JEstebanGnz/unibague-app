@@ -50,7 +50,7 @@ const handlerRedirection = () => {
 <template>
 
 
-    <div class="w-4/6 md:w-7/12" @click="handlerRedirection">
+    <div class="w-4/6 md:w-7/12 cursor-pointer" @click="handlerRedirection">
 
         <div class="w-full aspect-square bg-white rounded-2xl shadow-xl backdrop-blur-sm p-3 sm:p-8 md:p-6 justify-center flex align-center">
             <img class="object-contain " :src="icon"/>

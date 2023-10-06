@@ -3,7 +3,6 @@ import {onMounted, ref} from 'vue';
 import { QrcodeStream, QrcodeDropZone, QrcodeCapture } from 'vue-qrcode-reader'
 
 const MyComponent = {
-
     components: {
         QrcodeStream,
         QrcodeDropZone,
@@ -14,14 +13,17 @@ const MyComponent = {
 let scan = ref(false);
 let module = ref(false);
 let codes = ref([]);
-let values = ref([]);
-const onDetect = (detectedCodes) => {
+let values = ref();
+
+const onDetect = async (detectedCodes)  =>  {
 
     codes.value = codes.value.concat(detectedCodes);
-    console.log( "array de codes",codes);
-    // values.value = codes._rawValue[0].rawValue;
-    //  console.log("valores de verdad", codes._rawValue[0].rawValue);
-    // console.log("values",values.value);
+
+     values.value = codes._rawValue[0].rawValue;
+     console.log("valores de verdad", values.value);
+     const route = 'users/byToken?token=' + values.value
+     const response = await axios.get(route)
+    console.log(response.data)
 }
 
 const scanear = () => {
@@ -40,7 +42,9 @@ const closeModal = () => {
     <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" @click="scanear">Scanear</button>
     <div>
         <!-- Mostrar los valores de detectedCodes en la vista -->
-        <div v-for="(code, index) in codes" :key="index">{{ code }}</div>
+<!--        <div v-for="(value, index) in values" :key="index">{{ value }}</div>-->
+        <div >{{ values }}</div>
+
     </div>
     <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-28" v-if="scan">
 
