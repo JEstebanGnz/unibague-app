@@ -28,6 +28,7 @@ export default {
             opacity: {
                 '2': '.02',
                 '3': '.03',
+                '5': '.05',
             },
             screens: {
                 'sm':'430px',
