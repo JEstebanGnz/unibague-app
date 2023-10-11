@@ -11,19 +11,15 @@ const MyComponent = {
     }
 }
 
-//let scanedCode = [];
 let dataCopied = ref(false);
 let userRoles = ref([]);
-
 
 const onDetect = async (detectedCode) => {
 
     let scanedCode = detectedCode[0].rawValue;
-
     const route = 'users/byToken?token=' + scanedCode
     const response = await axios.get(route)
     userRoles.value = response.data;
-
     clipBoard(userRoles.value[0].identification)
 
 }
@@ -97,7 +93,6 @@ const clipBoard = async (identification) => {
                     </tbody>
                 </table>
 
-
             </div>
             <div v-else
                  class="relative overflow-x-auto shadow-md sm:rounded-lg flex flex-col items-center p-8 w-2/4 mx-auto">
@@ -116,7 +111,6 @@ const clipBoard = async (identification) => {
                     <path stroke-linecap="round" stroke-linejoin="round"
                           d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-
                 El número de identificación ha sido copiado en el portapapeles
             </div>
         </div>

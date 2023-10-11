@@ -49,7 +49,6 @@ const changeCarnet = () => {
                 </svg>
             </div>
 
-
             <div class="custom-shape-divider-top-1695396892 relative flex" :style="{ fill:color }">
                 <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
                      preserveAspectRatio="none">
@@ -69,16 +68,11 @@ const changeCarnet = () => {
             <h3>{{ identification }}</h3>
             <h3 v-html="primaryInfo"/>
             <h3>{{ secondaryInfo }}</h3>
-
         </div>
-
 
         <div class="bottom-0 absolute pb-4 w-full flex flex-col items-center">
             <div class="flex mb-5  mx-auto">
-
                 <qrcode-vue :value="qrCode" :size="size" level="H"/>
-
-
             </div>
             <img :src="logo" alt="" class="w-3/5">
         </div>
