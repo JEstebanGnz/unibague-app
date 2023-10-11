@@ -18,8 +18,9 @@
                 <div class="absolute text-black text-2xl font-normal">S</div>
             </div>
         </div>
-    </div>
+
     <slot></slot>
+    </div>
 </template>
 
 <style scoped>

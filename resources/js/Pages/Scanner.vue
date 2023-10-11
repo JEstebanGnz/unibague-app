@@ -11,18 +11,20 @@ const MyComponent = {
     }
 }
 
-let scanedCode = [];
+//let scanedCode = [];
 let dataCopied = ref(false);
 let userRoles = ref([]);
 
 
 const onDetect = async (detectedCode) => {
 
-    scanedCode = detectedCode[0].rawValue;
+    let scanedCode = detectedCode[0].rawValue;
 
     const route = 'users/byToken?token=' + scanedCode
     const response = await axios.get(route)
     userRoles.value = response.data;
+
+    clipBoard(userRoles.value[0].identification)
 
 }
 
@@ -30,21 +32,23 @@ const clipBoard = async (identification) => {
     try {
         await navigator.clipboard.writeText(identification)
         dataCopied.value = true;
+        console.error(dataCopied.value)
     } catch (err) {
         console.error('Error al copiar al portapapeles:', err)
+        dataCopied.value = false;
     }
 }
 
 </script>
 <template>
     <MainLayout></MainLayout>
-    <div class="p-4 flex flex-wrap">
-        <div class="w-full md:w-1/2  sm:2/3 mb-4 md:mb-0 md:p-4">
+    <div class="p-8 flex flex-wrap overflow-hidden justify-around" :class="{'items-center': userRoles.length == 0}">
+        <div class="w-full md:w-5/12 rounded-2xl overflow-hidden shadow-xl">
             <qrcode-stream @detect="onDetect"></qrcode-stream>
         </div>
-        <div class="w-full md:w-1/2 md:p-4">
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table v-if="userRoles.length != 0" class="w-full">
+        <div class="w-full md:w-1/2">
+            <div v-if="userRoles.length != 0" class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table class="w-full">
                     <thead
                         class="uppercase bg-unibague-blue bg-opacity-5 dark:bg-gray-700 dark:text-gray-400 border-b">
                     <tr>
@@ -93,6 +97,18 @@ const clipBoard = async (identification) => {
                     </tbody>
                 </table>
 
+
+            </div>
+            <div v-else
+                 class="relative overflow-x-auto shadow-md sm:rounded-lg flex flex-col items-center p-8 w-2/4 mx-auto">
+                <p class="text-black mb-4 text-center text-2xl text-gray-700 font-semibold">Escanea el código QR</p>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="w-24 h-24 text-blue-500">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.5z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M6.75 6.75h.75v.75h-.75v-.75zM6.75 16.5h.75v.75h-.75v-.75zM16.5 6.75h.75v.75h-.75v-.75zM13.5 13.5h.75v.75h-.75v-.75zM13.5 19.5h.75v.75h-.75v-.75zM19.5 13.5h.75v.75h-.75v-.75zM19.5 19.5h.75v.75h-.75v-.75zM16.5 16.5h.75v.75h-.75v-.75z"/>
+                </svg>
             </div>
             <div v-if="dataCopied" class="p-8 flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
