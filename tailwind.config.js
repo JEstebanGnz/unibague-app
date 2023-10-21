@@ -10,6 +10,12 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './resources/js/**/*.vue',
+        "./index.html",
+        "./src/**/*.{js,ts,jsx,tsx}",
+        "./src/**/*.{html,js}",
+        "./node_modules/tw-elements/dist/js/**/*.js",
+        "./node_modules/@themesberg/flowbite/**/*.js"
+
     ],
 
     theme: {
@@ -22,9 +28,18 @@ export default {
             },
             opacity: {
                 '2': '.02',
+                '3': '.03',
+                '5': '.05',
+
+            },
+            screens: {
+                'sm':'430px',
+
             }
+
         },
     },
 
-    plugins: [forms, typography],
+    plugins: [forms, typography,require("tw-elements/dist/plugin.cjs"),require('@themesberg/flowbite/plugin') ],
+    darkMode: "class"
 };

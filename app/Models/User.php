@@ -56,16 +56,23 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public static function getPersonalInfo()
+    {
+        $json = \File::get('C:\laragon\www\api\json1.json');
+        $data = json_decode($json);
+        return ($data);
+    }
+
     /**
      * Genera un codigo QR seguro y encriptado
      * @param $name
      * @param $email
      * @return string
      */
-    public static function generateQrCode ($name, $email) :string{
+    public static function generateQrCode ($email) :string{
         $now = Carbon::now()->toDateTimeString();
-        $token = $name.$email.$now;
-        return Hash::make($token);
+        $token = $email;
+        return Hash::make($token.$now);
     }
 
 

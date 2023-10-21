@@ -18,6 +18,7 @@ class PermissionSeeder extends Seeder
             'name' => 'carnet:scanQr',
             'description'=> 'Permite abrir la camara del dispositov y escanear el codigo QR.']);
 
+
         Permission::create([
             'name' => 'adminPanel:crud_roles',
             'description'=> 'Permite asignar usuarios a roles de usuario. Aismismo, crear y eliminar roles de usuario, y asignar o eliminar permisos de los roles.']);

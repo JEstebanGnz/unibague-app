@@ -57,4 +57,12 @@ class UserController extends Controller
         $users -> delete();
         return Inertia::render('User/Index')->with('success','Company has been created successfully.');
     }
+
+
+    public function getUserByToken(Request $request)
+    {
+        $token = $request -> input('token');
+        $userFound = User::where('qrCode','=',$token)->first();
+        User::getPersonalInfo();
+    }
 }

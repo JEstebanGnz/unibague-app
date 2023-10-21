@@ -12,7 +12,7 @@ class ModuleSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
 
         Module::create([

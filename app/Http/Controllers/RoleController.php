@@ -27,7 +27,7 @@ class RoleController extends Controller
 
     public function create(Role $roles)
     {
-        return Inertia::render('Role/Create', ['roles' => $roles]);
+        return Inertia::render('Role/Index', ['roles' => $roles]);
     }
 
     public function show(Role $roles)
