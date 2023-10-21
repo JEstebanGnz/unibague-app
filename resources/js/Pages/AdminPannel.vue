@@ -1,87 +1,86 @@
-<script setup lang="ts">
+<script setup>
+import { initFlowbite } from 'flowbite'
+import { onMounted } from 'vue'
 
-import {ref} from 'vue'
-
-let isOpen = ref(false)
-let campo1: ''
-let campo2: ''
-let campo3: ''
-
-
-const submitForm = () =>
-{
-
-    console.log('Campo 1:', campo1);
-    console.log('Campo 2:', campo2);
-    console.log('Campo 3:', campo3);
-
-}
-
+onMounted(() => {
+    initFlowbite()
+})
 </script>
 
 <template>
-    <div class=" flex flex-col-2 w-screen h-screen overflow-x-hidden divide-x-8">
-        <div class="min-h-screen flex flex-row bg-unibague-blue hidden sm:block flex-col w-1/6 overflow-hidden">
+    <button data-drawer-target="separator-sidebar" data-drawer-toggle="separator-sidebar"
+            aria-controls="separator-sidebar" type="button"
+            class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+        <span class="sr-only">Open sidebar</span>
+        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+             xmlns="http://www.w3.org/2000/svg">
+            <path clip-rule="evenodd" fill-rule="evenodd"
+                  d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+        </svg>
+    </button>
+    <div class="flex flex-row justify-around items-center pt-2">
+        <div class="h-20 left-48 flex items-center ">
+            <div class="text-4xl font-semibold text-unibague-blue">
+                Dashboard
+            </div>
+        </div>
+
+    </div>
+    <aside id="separator-sidebar"
+           class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full md:translate-x-0"
+           aria-label="Sidebar">
+        <div class="h-full px-3 py-4 overflow-y-auto bg-unibague-blue dark:bg-gray-800">
             <div class="flex items-center justify-center h-20 xxl:hidden text-3xl text-white font-bold">
                 Unibague App
             </div>
-            <ul class="flex flex-col py-4 px-6 gap-y-6 text-white text-xl sm:hideen ">
+            <ul class="space-y-6 font-medium">
                 <li>
-                    <a href="users"
-                       class="flex flex-row items-center h-16 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:font-bold">
-                        <span class="text-xl font-normal ">Usuarios</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="roles"
-                       class="flex flex-row items-center h-16 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:font-bold">
-                        <span class="text-xl font-normal">Roles</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="permissions"
-                       class="flex flex-row items-center h-16 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:font-bold">
-                        <span class="text-xl font-normal">Permisos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="modules"
-                       class="flex flex-row items-center h-16 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:font-bold">
-                        <span class="text-xl font-normal">Módulos</span>
-                    </a>
-                </li>
+                    <a href="/users"
+                       class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-white/10 dark:hover:bg-gray-700 group">
 
+                        <span class="ml-3">Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/roles"
+                       class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-white/10 dark:hover:bg-gray-700 group">
+                        <span class="flex-1 ml-3 whitespace-nowrap">Roles</span>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="/permissions"
+                       class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-white/10 dark:hover:bg-gray-700 group">
+                        <span class="flex-1 ml-3 whitespace-nowrap">Permisos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/modules"
+                       class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-white/10 dark:hover:bg-gray-700 group">
+                        <span class="flex-1 ml-3 whitespace-nowrap">Modulos</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                 <li>
                     <a href="/dashboard"
-                       class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 hover:font-bold">
+                       class="flex items-center p-2 text-white transition duration-75 rounded-lg hover:bg-white/10 dark:hover:bg-gray-700 dark:text-white group">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="w-6 h-6 text-white">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                   d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
                         </svg>
-
-                        <span class="text-sm font-medium text-xl ml-2"> Ir al inicio</span>
+                        <span class="ml-4">Ir al inicio</span>
                     </a>
                 </li>
+
             </ul>
         </div>
+    </aside>
 
-
-        <div class="flex-1">
-            <div class="flex flex-row justify-around items-center pt-2">
-                <div class="h-20 left-48 flex items-center ">
-                    <div class="text-4xl font-semibold text-unibague-blue">
-                        Dashboard
-                    </div>
-                </div>
-
-            </div>
-
-
-
-
-            <slot></slot>
-        </div>
+    <div class="p-4 md:ml-64">
+        <slot></slot>
     </div>
+
 
 </template>

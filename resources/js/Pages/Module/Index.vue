@@ -30,7 +30,7 @@ const deleteModule = async (moduleId) =>
         await axios.delete(url);
         refreshModules(moduleId)
     } catch (error) {
-        alert('Hubo un problema al borrar el modulo seleccionado')
+        alert('Hubo un problema al borrar el modulo seleccionado' + error)
     }
 }
 

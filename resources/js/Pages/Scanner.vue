@@ -20,6 +20,7 @@ const onDetect = async (detectedCode) => {
     const route = 'users/byToken?token=' + scanedCode
     const response = await axios.get(route)
     userRoles.value = response.data;
+    console.log(scanedCode)
     clipBoard(userRoles.value[0].identification)
 
 }
@@ -39,7 +40,7 @@ const clipBoard = async (identification) => {
 <template>
     <MainLayout></MainLayout>
     <div class="p-8 flex flex-wrap overflow-hidden justify-around" :class="{'items-center': userRoles.length == 0}">
-        <div class="w-full md:w-5/12 rounded-2xl overflow-hidden shadow-xl">
+        <div class="w-full md:w-5/12 rounded-2xl overflow-hidden shadow-xl mb-4">
             <qrcode-stream @detect="onDetect"></qrcode-stream>
         </div>
         <div class="w-full md:w-1/2">
@@ -79,14 +80,14 @@ const clipBoard = async (identification) => {
                         class="px-8 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <template v-if="user.role === 'employee'">
                             <td class="py-4 px-6 font-bold">Departamento</td>
-                            <td class="py-4 px-6">{{ user.department.join() }}</td>
+                            <td class="py-4 px-6">{{ user.department }}</td>
                         </template>
                     </tr>
                     <tr v-for="user in userRoles" v-show="user.role === 'employee'"
                         class="px-8 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <template v-if="user.role === 'employee'">
                             <td class="py-4 px-6 font-bold">Cargo</td>
-                            <td class="py-4 px-6">{{ user.position.join() }}</td>
+                            <td class="py-4 px-6">{{ user.position }}</td>
                         </template>
                     </tr>
 
@@ -95,7 +96,7 @@ const clipBoard = async (identification) => {
 
             </div>
             <div v-else
-                 class="relative overflow-x-auto shadow-md sm:rounded-lg flex flex-col items-center p-8 w-2/4 mx-auto">
+                 class="relative overflow-x-auto shadow-md sm:rounded-lg flex flex-col items-center p-8 md:w-2/4 mx-auto w-full">
                 <p class="text-black mb-4 text-center text-2xl text-gray-700 font-semibold">Escanea el código QR</p>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" class="w-24 h-24 text-blue-500">
