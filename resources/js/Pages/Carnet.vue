@@ -10,8 +10,8 @@ const props = defineProps({
     user: String,
     role: String,
     identification: String,
-    primaryInfo: Array,
-    secondaryInfo: Array,
+    primaryInfo: String || Array,
+    secondaryInfo: String | Array,
     color: String,
     qrCode: String
 });
@@ -25,7 +25,7 @@ const changeCarnet = () => {
 
 <template>
     <div
-        class="w-full sm:max-h-screen sm:w-2/4 md:w-1/3 xl:w-1/5 flex flex-col min-h-screen overflow-hidden mx-auto bg-unibague-blue bg-opacity-3 rounded-xl mb-2 relative">
+        class="w-full sm:h-screen sm:w-2/4 md:w-1/3 xl:w-1/5 flex flex-col min-h-screen  mx-auto bg-unibague-blue bg-opacity-3 rounded-xl mb-2 relative">
         <div>
             <div class=" relative p-4  flex lg:pt-6" :style="{ background:color }">
                 <button class="self-start" @click="$emit('cambiarCarnet')">
@@ -36,7 +36,8 @@ const changeCarnet = () => {
                     </svg>
                 </button>
                 <div class="flex justify-center items-center w-full pt-3">
-                    <img class="rounded-full w-2/5 lg:w-3/5 xl:w-2/5 border-white border-solid border-2" :src="perfil" alt="">
+                    <img class="rounded-full w-2/5 lg:w-3/5 xl:w-2/5 border-white border-solid border-2" :src="perfil"
+                         alt="">
                 </div>
 
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -60,32 +61,27 @@ const changeCarnet = () => {
             </div>
         </div>
 
-        <div class=" px-1 lg:my-6 my-8 flex flex-col mx-auto font-bold text-lg justify-center text-center" :class="{'my-2': role == 'Funcionario'}">
-            <h3>{{ role }}</h3>
-            <h3>{{ identification }}</h3>
-            <h3 v-html="primaryInfo"/>
-            <h3>{{ secondaryInfo }}</h3>
+        <div
+            class=" px-12 lg:my-6 my-8 flex flex-col h-32 mx-auto font-bold text-lg justify-center text-center"
+            :class="{'my-2': role === 'Funcionario'}">
+            <h2>{{ role }}</h2>
+            <h2>{{ identification }}</h2>
+            <h2 v-html="primaryInfo"/>
+            <h2>{{ secondaryInfo }}</h2>
         </div>
 
-        <div class="bottom-0 absolute pb-4 w-full flex flex-col items-center">
-            <div class="flex mb-5  mx-auto">
+        <div class="bottom-0 pb-4 relative w-full flex flex-col items-center">
+            <div class=" mb-5 mx-auto">
                 <qrcode-vue :value="qrCode" :size="size" level="H"/>
             </div>
-            <img :src="logo" alt="" class="w-3/6 xl:w-2/6">
+            <img :src="logo" alt="" class="w-3/6 xl:w-3/6">
         </div>
+
     </div>
+
 </template>
 
 <style>
-.custom-shape-divider-top-1695396893 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-}
-
 .custom-shape-divider-top-1695396892 svg {
     position: relative;
     display: block;

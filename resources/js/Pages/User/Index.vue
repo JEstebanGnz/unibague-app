@@ -2,11 +2,19 @@
 import {defineProps} from 'vue';
 import {ref, onMounted} from 'vue'
 import AdminPannel from "@/Pages/AdminPannel.vue";
+import AddButton from "@/Components/AddButton.vue";
 
 const props = defineProps({usersProp: Array});
-
+const isOpen = ref(false);
 const users = ref([])
 
+const addNew = () => {
+    isOpen.value = true;
+    return isOpen.value
+}
+const closeModal = () => {
+    isOpen.value = false;
+}
 onMounted(() => {
     users.value = props.usersProp
 })
@@ -24,7 +32,6 @@ const deleteUser = async (userId) =>
         alert('Hubo un problema al borrar el user seleccionado')
     }
 }
-
 
 const refreshUser = (userId) => {
     users.value = users.value.filter( (user) =>  { return (user.id !== userId) })
@@ -58,13 +65,9 @@ const refreshUser = (userId) => {
                                     Edit
                                 </th>
 
-
-
                             </tr>
                             </thead>
-
                             <tbody class="bg-white">
-
                             <tr v-for="user in users" :key="user.id">
                                 <td class="px-6 py-4 border-b border-gray-200 whitespace-nowrap">
                                     <div class="flex items-center">
@@ -118,32 +121,51 @@ const refreshUser = (userId) => {
                 </div>
             </div>
         </div>
+        <AddButton @click="addNew" class=" mt-8 left-3/4 relative"/>
+        <template v-if="isOpen">
+            <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <form method="POST" action="/users">
+                        <div class="mb-4">
+                            <label for="name" class="text-gray-700">Nombre</label>
+                            <input type="text" name="name" id="name"
+                                   class="w-full mt-2 px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="text-gray-700">Email</label>
+                            <input type="text" name="email" id="email"
+                                   class="w-full mt-2 px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div class="mb-4">
+                            <label for="qrCode" class="text-gray-700">Codigo QR</label>
+                            <input type="text" name="qrCode" id="qrCode"
+                                   class="w-full mt-2 px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div class="mb-4">
+                            <label for="role_id" class="text-gray-700">Id del Rol</label>
+                            <input type="text" name="role_id" id="role_id" min="0"
+                                   class="w-full mt-2 px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div class="text-center">
+                            <button type="button" @click="closeModal"
+                                    class="px-4 py-2 mr-2 bg-gray-300 text-gray-700 rounded-full hover:bg-gray-400 transition duration-200">
+                                Cerrar
+                            </button>
+                            <button type="submit"
+                                    class="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition duration-200">
+                                Aceptar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </template>
     </AdminPannel>
 </template>
 
-
-
-
 <style scoped>
 
-.user-table {
-    width: 100%;
-    border-collapse: collapse;
-}
 
-.user-table th {
-    background-color: #f2f2f2;
-    padding: 12px;
-    text-align: left;
-    font-weight: bold;
-}
-
-.user-table td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-}
-
-.user-table tbody tr:hover {
-    background-color: #f9f9f9;
-}
 </style>

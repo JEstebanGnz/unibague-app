@@ -2,10 +2,19 @@
 import {defineProps} from 'vue';
 import { ref, onMounted } from 'vue'
 import AdminPannel from "@/Pages/AdminPannel.vue";
+import AddButton from "@/Components/AddButton.vue";
 
 const props = defineProps({modulesProp: Array});
-
+const isOpen = ref(false);
 const modules = ref([])
+
+const addNew = () => {
+    isOpen.value = true;
+    return isOpen.value
+}
+const closeModal = () => {
+    isOpen.value = false;
+}
 
 onMounted(() => {
     modules.value = props.modulesProp
@@ -32,7 +41,7 @@ const refreshModules = (moduleId) => {
 </script>
 
 <template>
-    <AdminPannel>
+    <AdminPannel class="bg-unibague-blue bg-opacity-5">
         <div>
             <div class="flex flex-col mt-8 mx-6">
                 <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
@@ -137,7 +146,45 @@ const refreshModules = (moduleId) => {
                 </div>
             </div>
         </div>
+        <AddButton @click="addNew" class=" mt-8 left-3/4 relative"/>
+        <template v-if="isOpen">
+            <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <form method="POST" action="/modules">
+                        <div class="mb-4">
+                            <label for="name" class="text-gray-700">Nombre</label>
+                            <input type="text" name="name" id="name" class="w-full mt-2 px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div class="mb-4">
+                            <label for="permission_id" class="text-gray-700">Id del permiso</label>
+                            <input type="text" name="permission_id" id="permission_id" class="w-full mt-2 px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div class="mb-4">
+                            <label for="icon" class="text-gray-700">Icono</label>
+                            <input type="text" name="icon" id="icon" value="/../../public/assets/Unibague_logo.jpg" class="w-full mt-2 px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div class="mb-4">
+                            <label for="visible" class="text-gray-700">Visibilidad</label>
+                            <input type="text" name="visible" id="visible" class="w-full mt-2 px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div class="text-center">
+                            <button type="button" @click="closeModal"
+                                    class="px-4 py-2 mr-2 bg-gray-300 text-gray-700 rounded-full hover:bg-gray-400 transition duration-200">
+                                Cerrar
+                            </button>
+                            <button type="submit"
+                                    class="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition duration-200">
+                                Aceptar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </template>
     </AdminPannel>
+
 </template>
 
 <style scoped>

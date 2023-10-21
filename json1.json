@@ -1,24 +1,24 @@
 [
     {
         "role":"student",
-        "name": "Sara Valentina Cuy Ramírez",
+        "name": "Sara Valentina Cuy",
         "identification":"1005720028",
         "user":"2420181016",
-        "currentProgram":["Ingeniería electrónica"]
+        "currentProgram":["Ingeniería electrónica","Ingeniería electrónica"]
     },
     {
         "role":"employee",
         "name": "Juan Sebastian Ospina Velasquez",
         "identification":"1005720028",
         "user":"juan.ospina",
-        "department":["Oficina de Gestión de Tecnología, Redes y Sistemas"],
-        "position":["Programador Senior"]
+        "department":"Oficina de Gestión de Tecnología, Redes y Sistemas",
+        "position":"Programador Senior"
     },
     {
         "role":"graduated",
         "name": "Sara Valentina Cuy Ramírez",
         "identification":"2420181016",
         "user":"sara.cuy",
-        "finishedProgram":["Ingeniería electrónica", "Ingeniería industrial"]
+        "finishedProgram":["Ingeniería electrónica","Ingeniería industrial"]
     }
 ]

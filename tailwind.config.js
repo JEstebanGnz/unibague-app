@@ -14,6 +14,7 @@ export default {
         "./src/**/*.{js,ts,jsx,tsx}",
         "./src/**/*.{html,js}",
         "./node_modules/tw-elements/dist/js/**/*.js",
+        "./node_modules/@themesberg/flowbite/**/*.js"
 
     ],
 
@@ -39,6 +40,6 @@ export default {
         },
     },
 
-    plugins: [forms, typography,require("tw-elements/dist/plugin.cjs") ],
+    plugins: [forms, typography,require("tw-elements/dist/plugin.cjs"),require('@themesberg/flowbite/plugin') ],
     darkMode: "class"
 };

@@ -16,24 +16,15 @@ use Inertia\Inertia;
 Route::get('/login/google/callback', [\App\Http\Controllers\AuthController::class,'googleAuth']);
 Route::get('/', [\App\Http\Controllers\AuthController::class, 'redirect'] )->name('inicio');
 Route::get('/users/byToken', [\App\Http\Controllers\UserController::class,'getUserByToken']);
-Route::get('/carnet', [\App\Http\Controllers\CarnetController::class,'carnetView'])->name('carnet');
-Route::get('/ajustes', [\App\Http\Controllers\AdminPannelController::class, 'adminPannelView'])->name('ajustes');
-Route::get('/scanner', [\App\Http\Controllers\ScannerController::class,'scannerView'] )->name('scanner');
+//Route::get('/carnet',[\App\Http\Controllers\UserController::class,'getUserByToken']);
+Route::get('/carnet', [\App\Http\Controllers\CarnetController::class,'carnetView'])->middleware(['auth'])->name('carnet');
+Route::get('/ajustes', [\App\Http\Controllers\AdminPannelController::class, 'adminPannelView'])->middleware(['auth'])->name('ajustes');
+Route::get('/scanner', [\App\Http\Controllers\ScannerController::class,'scannerView'] )->middleware(['auth'])->name('scanner');
 
-Route::resource('roles', \App\Http\Controllers\RoleController::class);
-Route::resource('users', \App\Http\Controllers\UserController::class);
-Route::resource('permissions', \App\Http\Controllers\PermissionController::class);
-Route::resource('modules', \App\Http\Controllers\ModuleController::class);
-
-//Route::middleware([
-//    'auth:sanctum',
-//    config('jetstream.auth_session'),
-//    'verified',
-//])->group(function () {
-//    Route::get('/dashboard', function () {
-//        return Inertia::render('Dashboard');
-//    })->name('dashboard');
-//});
+Route::resource('roles', \App\Http\Controllers\RoleController::class)->middleware(['auth']);
+Route::resource('users', \App\Http\Controllers\UserController::class)->middleware(['auth']);
+Route::resource('permissions', \App\Http\Controllers\PermissionController::class)->middleware(['auth']);
+Route::resource('modules', \App\Http\Controllers\ModuleController::class)->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

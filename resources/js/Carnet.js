@@ -1,5 +1,5 @@
 class Carnet {
-    constructor(image, name, user, role, identification,primaryInfo, secondaryInfo, color, qrCode) {
+    constructor(image, name, user, role, identification, primaryInfo, secondaryInfo, color, qrCode) {
         this.image= image;
         this.name= name;
         this.user= user;
