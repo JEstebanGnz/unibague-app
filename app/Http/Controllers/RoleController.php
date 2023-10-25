@@ -47,9 +47,9 @@ class RoleController extends Controller
 
     }
 
-    public function destroy(Role $roles)
+    public function destroy(Role $role)
     {
-        $roles->delete();
+        $role->delete();
         return Inertia::render('Role/Index')->with('success', 'Company has been created successfully.');
     }
 }

@@ -23,7 +23,6 @@ const mostrarSiguienteCarnet = () => {
     if(index.value === 3){
         index.value = 0;
     }
-
 }
 </script>
 

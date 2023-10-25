@@ -30,7 +30,7 @@ const deleteModule = async (moduleId) =>
         await axios.delete(url);
         refreshModules(moduleId)
     } catch (error) {
-        alert('Hubo un problema al borrar el modulo seleccionado')
+        alert('Hubo un problema al borrar el modulo seleccionado' + error)
     }
 }
 
@@ -146,7 +146,7 @@ const refreshModules = (moduleId) => {
                 </div>
             </div>
         </div>
-        <AddButton @click="addNew" class=" mt-8 left-3/4 relative"/>
+        <AddButton @click="addNew" class=" ml-6 mt-8 "/>
         <template v-if="isOpen">
             <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
                 <div class="bg-white p-6 rounded-lg shadow-lg">

@@ -38,7 +38,7 @@ class UserController extends Controller
         return Inertia::render('User/Show', ['user' => $user]);
     }
 
-    public function update(Request $request, User $users)
+    public function update(Request $request, User $user)
     {
         $request->validate([
             'name' => 'required',
@@ -47,14 +47,14 @@ class UserController extends Controller
             'role_id' => 'required',
         ]);
 
-        $users->fill($request->post())->save();
+        $user->fill($request->post())->save();
         return redirect()->route('/users')->with('success','Company Has Been updated successfully');
 
     }
 
-    public function destroy(User $users)
+    public function destroy(User $user)
     {
-        $users -> delete();
+        $user -> delete();
         return Inertia::render('User/Index')->with('success','Company has been created successfully.');
     }
 
@@ -63,6 +63,7 @@ class UserController extends Controller
     {
         $token = $request -> input('token');
         $userFound = User::where('qrCode','=',$token)->first();
-        User::getPersonalInfo();
+        return $userFound->getPersonalInfo();
+
     }
 }
