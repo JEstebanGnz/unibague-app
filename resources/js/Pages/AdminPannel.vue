@@ -19,7 +19,7 @@ onMounted(() => {
         </svg>
     </button>
     <div class="flex flex-row justify-around items-center pt-2">
-        <div class="h-20 left-48 flex items-center ">
+        <div class="md:h-20 left-48 flex items-center h-6">
             <div class="text-4xl font-semibold text-unibague-blue">
                 Dashboard
             </div>
