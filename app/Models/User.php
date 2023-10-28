@@ -14,6 +14,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
+use Ospina\CurlCobain\CurlCobain;
 
 /**
  * App\Models\User
@@ -56,11 +57,19 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function getUser (): string
+    {
+
+       // return 'juan.betancourt';
+        return explode('@',$this->email)[0];
+    }
     public function getPersonalInfo()
     {
-        $json = \File::get('C:\laragon\www\api\json1.json');
-        $data = json_decode($json);
-        return $data;
+       $client = new CurlCobain(env("API_URL"));
+       //TODO: cambiar por user
+        $client ->setQueryParam('usuario',$this->getUser());
+       $data = $client -> makeRequest();
+       return json_decode($data);
     }
 
     /**
