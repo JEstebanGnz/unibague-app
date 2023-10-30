@@ -5,6 +5,9 @@ import { onMounted } from 'vue'
 onMounted(() => {
     initFlowbite()
 })
+
+const props = defineProps({initial: String });
+
 </script>
 
 <template>
@@ -20,7 +23,7 @@ onMounted(() => {
                 <div
                     type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start"
                     class="cursor-pointer w-full h-full bg-yellow-400 rounded-full flex justify-center items-center ">
-                    <div class=" text-black text-2xl font-normal">S</div>
+                    <div class=" text-black text-2xl font-normal"> {{props.initial}}</div>
                 </div>
                 <div id="userDropdown"
                      class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
@@ -32,7 +35,7 @@ onMounted(() => {
             </div>
         </div>
         <svg id="wave" class="sm:-mt-3 -mt-1" style="transform:rotate(180deg); transition: 0.3s" viewBox="0 0 1440 100"
-             version="1.1" xmlns="http://www.w3.org/2000/svg">
+             xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0">
                     <stop stop-color="rgba(0, 61, 124, 1)" offset="0%"></stop>
