@@ -1,7 +1,6 @@
 <script setup>
 
 import QrcodeVue from 'qrcode.vue';
-import perfil from "/public/Images/maicol.png"
 import logo from "/public/Images/logoUnibague.png"
 
 const props = defineProps({
@@ -13,15 +12,12 @@ const props = defineProps({
     primaryInfo: String || Array,
     secondaryInfo: String | Array,
     color: String,
-    qrCode: String
+    qrCode: String,
+    showChangeButton: Boolean
 });
-const size = 190;
+const QRsize = 190;
 const emit = defineEmits(['cambiarCarnet']);
 
-
-const changeCarnet = () => {
-    emit('cambiarCarnet');
-}
 </script>
 
 
@@ -29,27 +25,20 @@ const changeCarnet = () => {
     <div
         class="w-full sm:h-screen sm:w-2/4 md:w-1/3 xl:w-1/5 flex flex-col min-h-screen mx-auto bg-unibague-blue bg-opacity-3 rounded-xl mb-2 relative">
         <div>
-            <div class=" relative p-4 flex lg:pt-6" :style="{ background:color }">
-                <button class="self-start" @click="$emit('cambiarCarnet')">
+            <div class="relative flex" :style="{ background:color }">
+                <button class="absolute top-5 left-7" @click="$emit('cambiarCarnet')" v-if="showChangeButton">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                         stroke="currentColor" class="w-6 h-6 text-white self-start">
+                         stroke="currentColor" class="w-6 h-6 text-white">
                         <path stroke-linecap="round" stroke-linejoin="round"
                               d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/>
                     </svg>
                 </button>
-                <div class="flex justify-center items-center w-full pt-3">
-                    <img class="rounded-full w-2/5 lg:w-3/5 xl:w-2/5 border-white border-solid border-2" :src="perfil"
+                <div class="flex justify-center items-center w-full">
+                    <img class="rounded-full w-2/5 h-3/5 border-white border-solid border-2 bg-white object-contain"
+                         :src="props.image"
                          alt="">
                 </div>
-
-
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                     stroke="currentColor" class="w-6 h-6 right-0" :style="{ color:color }">
-                    <path transform="translate(0 -1)" stroke-linecap="round" stroke-linejoin="round"
-                          d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/>
-                </svg>
             </div>
-
 
             <div class="custom-shape-divider-top-1695396892 relative flex" :style="{ fill:color }">
                 <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
@@ -59,8 +48,8 @@ const changeCarnet = () => {
                 </svg>
 
 
-                <div class="absolute inset-0 flex flex-col text-center top-2 md:top-4">
-                    <h3 class="text-white text-xl font-bold">{{ name }}</h3>
+                <div class="absolute inset-0 flex flex-col text-center">
+                    <h3 class="text-white text-xl font-bold capitalize">{{ name }}</h3>
                     <h3 class="text-white text-lg font-light">{{ user }}</h3>
                 </div>
             </div>
@@ -68,18 +57,18 @@ const changeCarnet = () => {
 
 
         <div
-            class=" px-12 lg:my-6 my-8 flex flex-col h-32 mx-auto font-bold text-lg justify-center text-center"
-            :class="{'my-2': role === 'Funcionario'}">
+            class=" px-12 lg:my-4 my-4 flex flex-col h-32 mx-auto font-bold text-lg justify-between text-center"
+            :class="{'my-4': role === 'Funcionario'}">
             <h2>{{ role }}</h2>
             <h2>{{ identification }}</h2>
-            <h2 v-html="primaryInfo"/>
-            <h2>{{ secondaryInfo }}</h2>
+            <h2 class="capitalize" v-html="primaryInfo"/>
+            <h2 class="capitalize">{{ secondaryInfo }}</h2>
         </div>
 
 
         <div class="bottom-0 pb-4 relative w-full flex flex-col items-center">
             <div class=" mb-5 mx-auto">
-                <qrcode-vue :value="qrCode" :size="size" level="H"/>
+                <qrcode-vue :value="qrCode" :size="QRsize" level="Q"/>
             </div>
             <img :src="logo" alt="" class="w-3/6 xl:w-3/6">
         </div>

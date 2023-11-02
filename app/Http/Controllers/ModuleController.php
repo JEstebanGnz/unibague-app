@@ -12,9 +12,11 @@ class ModuleController extends Controller
 {
     public function index(): \Inertia\Response
     {
+
         $modules = Module::all();
         return Inertia::render('Module/Index', ['modulesProp' => $modules]);
     }
+
 
     public function store(Request $request)
     {

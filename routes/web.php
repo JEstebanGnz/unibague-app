@@ -26,6 +26,5 @@ Route::resource('users', \App\Http\Controllers\UserController::class)->middlewar
 Route::resource('permissions', \App\Http\Controllers\PermissionController::class)->middleware(['auth']);
 Route::resource('modules', \App\Http\Controllers\ModuleController::class)->middleware(['auth']);
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class,'dashboardView'])->middleware(['auth']);
+

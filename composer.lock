@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e599ab397ee84d9eb0f6e1d43443dba6",
+    "content-hash": "1a6530f371c48dfae320135274abd74f",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2899,6 +2899,43 @@
                 }
             ],
             "time": "2023-02-08T01:06:31+00:00"
+        },
+        {
+            "name": "ospina/curlcobain",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JSebastianOspina/CurlCobain.git",
+                "reference": "1096d9b22881517956a32d8dce55f0fb9d101124"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JSebastianOspina/CurlCobain/zipball/1096d9b22881517956a32d8dce55f0fb9d101124",
+                "reference": "1096d9b22881517956a32d8dce55f0fb9d101124",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ospina\\CurlCobain\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Ospina",
+                    "email": "sebastianospinacontacto@gmail.com"
+                }
+            ],
+            "description": "Easy Curl for everybody, forget about manual long curl configuration",
+            "support": {
+                "issues": "https://github.com/JSebastianOspina/CurlCobain/issues",
+                "source": "https://github.com/JSebastianOspina/CurlCobain/tree/1.0.2"
+            },
+            "time": "2022-10-20T04:41:03+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",

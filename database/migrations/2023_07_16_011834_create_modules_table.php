@@ -18,6 +18,8 @@ class CreateModulesTable extends Migration
             $table->string('name',40);//los caracteres
             $table->string('permission_id',40);//los caracteres
             $table->string('icon');
+            $table->string('type');
+            $table->text('payload');
             $table->boolean('visible');
             $table->timestamps();
         });
