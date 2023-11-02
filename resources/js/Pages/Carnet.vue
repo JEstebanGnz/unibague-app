@@ -68,7 +68,7 @@ const emit = defineEmits(['cambiarCarnet']);
 
         <div class="bottom-0 pb-4 relative w-full flex flex-col items-center">
             <div class=" mb-5 mx-auto">
-                <qrcode-vue :value="qrCode" :size="QRsize" level="H"/>
+                <qrcode-vue :value="qrCode" :size="QRsize" level="Q"/>
             </div>
             <img :src="logo" alt="" class="w-3/6 xl:w-3/6">
         </div>

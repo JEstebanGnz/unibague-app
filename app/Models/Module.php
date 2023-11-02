@@ -17,6 +17,7 @@ use Illuminate\Support\Carbon;
  * @property string $permission_id
  * @property string $icon
  * @property int $visible
+ * @property int $type
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Collection<int, Permission> $permissions
@@ -31,6 +32,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Module wherePermissionName($value)
  * @method static Builder|Module whereUpdatedAt($value)
  * @method static Builder|Module whereVisble($value)
+ * @method static Builder|Module whereType($value)
  * @method static Builder|Module wherePermissionId($value)
  * @method static Builder|Module whereVisible($value)
  * @mixin Eloquent

@@ -1,7 +1,8 @@
 <script setup>
-import {onMounted, ref} from 'vue';
+import {ref} from 'vue';
 import {QrcodeStream, QrcodeDropZone, QrcodeCapture} from 'vue-qrcode-reader'
 import MainLayout from "@/Layouts/MainLayout.vue";
+
 
 const MyComponent = {
     components: {
@@ -38,13 +39,13 @@ const clipBoard = async (identification) => {
 
 </script>
 <template>
-    <MainLayout></MainLayout>
-    <div class="p-8 flex flex-wrap overflow-hidden justify-around" :class="{'items-center': userRoles.length == 0}">
+    <MainLayout >
+    <div class="p-8 flex flex-wrap overflow-hidden justify-around" :class="{'items-center': userRoles.length === 0}">
         <div class="w-full md:w-5/12 rounded-2xl overflow-hidden shadow-xl mb-4">
             <qrcode-stream @detect="onDetect"></qrcode-stream>
         </div>
         <div class="w-full md:w-1/2">
-            <div v-if="userRoles.length != 0" class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <div v-if="userRoles.length !== 0" class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full">
                     <thead
                         class="uppercase bg-unibague-blue bg-opacity-5 dark:bg-gray-700 dark:text-gray-400 border-b">
@@ -97,7 +98,7 @@ const clipBoard = async (identification) => {
             </div>
             <div v-else
                  class="relative overflow-x-auto shadow-md sm:rounded-lg flex flex-col items-center p-8 md:w-2/4 mx-auto w-full">
-                <p class="text-black mb-4 text-center text-2xl text-gray-700 font-semibold">Escanea el código QR</p>
+                <p class=" mb-4 text-center text-2xl text-gray-700 font-semibold">Escanea el código QR</p>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" class="w-24 h-24 text-blue-500">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -116,6 +117,6 @@ const clipBoard = async (identification) => {
             </div>
         </div>
     </div>
-
+    </MainLayout>
 </template>
 
