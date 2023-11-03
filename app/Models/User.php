@@ -76,7 +76,7 @@ class User extends Authenticatable
     public function getUser (): string
     {
 
-       // return 'juan.betancourt';
+        return 'juan.betancourt';
         return explode('@',$this->email)[0];
     }
 
@@ -85,8 +85,11 @@ class User extends Authenticatable
     {
        $client = new CurlCobain(env("API_URL"));
        //TODO: cambiar por user
-        $client ->setQueryParam('usuario',$this->getUser());
+        $client ->setQueryParam('user',$this->getUser());
+        $client ->setQueryParam('api_token','$2y$10$s/9xSDieUMEvYD/gfKqFAeFzvWXt13feXytgpJzQ9rZQrbGpBYUqo');
+
        $data = $client -> makeRequest();
+
        return json_decode($data);
     }
 

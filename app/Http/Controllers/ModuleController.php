@@ -25,6 +25,8 @@ class ModuleController extends Controller
             'permission_id' => 'required',
             'icon' => 'required',
             'visible' => 'required',
+            'type' => 'required',
+            'payload' => 'required',
         ]);
 
         Module::create($request->all());
@@ -48,6 +50,8 @@ class ModuleController extends Controller
             'permission_id' => 'required',
             'icon' => 'required',
             'visible' => 'required',
+            'type' => 'required',
+            'payload' => 'required',
         ]);
 
         $module->fill($request->post())->save();
