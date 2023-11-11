@@ -17,7 +17,6 @@ class ModuleSeeder extends Seeder
 
         Module::create([
             'name' => 'Carnet',
-            'permission_id' => '1',
             'icon' => '/Images/carnet.svg',
             'visible' => true,
             'type' => 'InternalRedirect',
@@ -26,7 +25,6 @@ class ModuleSeeder extends Seeder
 
         Module::create([
             'name' => 'SIGA',
-            'permission_id' => '2',
             'icon' => '/Images/SIGA.svg',
             'visible' => true,
             'type' => 'ExternalComplexRedirect',
@@ -35,7 +33,6 @@ class ModuleSeeder extends Seeder
 
         Module::create([
             'name' => 'Scaner',
-            'permission_id' => '3',
             'icon' => '/Images/qrcode.svg',
             'visible' => false,
             'type' => 'InternalRedirect',
@@ -44,7 +41,6 @@ class ModuleSeeder extends Seeder
 
         Module::create([
             'name' => 'Ajustes',
-            'permission_id' => '4',
             'icon' => '/Images/config.svg',
             'visible' => false,
             'type' => 'InternalRedirect',
@@ -54,7 +50,6 @@ class ModuleSeeder extends Seeder
 
         Module::create([
             'name' => 'Carnet',
-            'permission_id' => '1',
             'icon' => '/Images/carnet.svg',
             'visible' => true,
             'type' => 'InternalRedirect',
@@ -63,7 +58,6 @@ class ModuleSeeder extends Seeder
 
         Module::create([
             'name' => 'SIGA',
-            'permission_id' => '2',
             'icon' => '/Images/SIGA.svg',
             'visible' => true,
             'type' => 'ExternalComplexRedirect',
@@ -72,7 +66,6 @@ class ModuleSeeder extends Seeder
 
         Module::create([
             'name' => 'Scaner',
-            'permission_id' => '3',
             'icon' => '/Images/qrcode.svg',
             'visible' => false,
             'type' => 'InternalRedirect',
@@ -81,7 +74,6 @@ class ModuleSeeder extends Seeder
 
         Module::create([
             'name' => 'Ajustes',
-            'permission_id' => '4',
             'icon' => '/Images/config.svg',
             'visible' => false,
             'type' => 'InternalRedirect',

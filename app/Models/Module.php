@@ -6,6 +6,7 @@ use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
@@ -14,10 +15,10 @@ use Illuminate\Support\Carbon;
  *
  * @property int $id
  * @property string $name
- * @property string $permission_id
  * @property string $icon
  * @property int $visible
  * @property int $type
+ * @property text $payload
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Collection<int, Permission> $permissions
@@ -33,6 +34,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Module whereUpdatedAt($value)
  * @method static Builder|Module whereVisble($value)
  * @method static Builder|Module whereType($value)
+ * @method static Builder|Module wherePayload($value)
  * @method static Builder|Module wherePermissionId($value)
  * @method static Builder|Module whereVisible($value)
  * @mixin Eloquent
@@ -40,8 +42,24 @@ use Illuminate\Support\Carbon;
 class Module extends Model
 {
     protected $guarded = [];
-    public function permissions(): HasMany
+    public function roles(): BelongsToMany
     {
-        return $this->hasMany(Permission::class);
+        return $this->belongsToMany(Role::class);
+    }
+
+
+    public static function getUserRoles(): Collection{
+        $user = auth()->user();
+        $userRole = $user->role;
+
+        $queryModuleIds = \DB::table('module_role')
+            ->select(['module_id'])
+            ->where('role_id','=',$userRole->id)->get();
+
+        $modulesIds = [];
+        foreach ($queryModuleIds as $module){
+            $modulesIds[] = $module->module_id;
+        }
+        return self::whereIn('id',$modulesIds)->get();
     }
 }
