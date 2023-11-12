@@ -11,7 +11,7 @@ import SimpleRedirect from "@/Components/Module/SimpleRedirect.vue";
 const page = usePage()
 const user = computed(() => page.props.auth.user)
 const props = defineProps({modules: Array});
-
+console.log(props.modules)
 </script>
 
 <template>

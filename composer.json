@@ -16,7 +16,7 @@
         "ospina/curlcobain": "^1.0",
         "silviolleite/laravelpwa": "^2.0",
         "simplesoftwareio/simple-qrcode": "^4.2",
-        "tightenco/ziggy": "^1.0"
+        "tightenco/ziggy": "^1.8"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",

@@ -23,7 +23,7 @@ Route::get('/scanner', [\App\Http\Controllers\ScannerController::class,'scannerV
 
 Route::resource('roles', \App\Http\Controllers\RoleController::class)->middleware(['auth']);
 Route::resource('users', \App\Http\Controllers\UserController::class)->middleware(['auth']);
-Route::resource('permissions', \App\Http\Controllers\PermissionController::class)->middleware(['auth']);
+//Route::resource('permissions', \App\Http\Controllers\PermissionController::class)->middleware(['auth']);
 Route::resource('modules', \App\Http\Controllers\ModuleController::class)->middleware(['auth']);
 
 Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class,'dashboardView'])->middleware(['auth']);

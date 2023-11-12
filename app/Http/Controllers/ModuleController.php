@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Module;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use PhpParser\Node\Expr\AssignOp\Mod;
@@ -14,7 +15,8 @@ class ModuleController extends Controller
     {
 
         $modules = Module::all();
-        return Inertia::render('Module/Index', ['modulesProp' => $modules]);
+        $avaliableRoles = Role::all();
+        return Inertia::render('Module/Index', ['modulesProp' => $modules, 'availableRoles'=>$avaliableRoles]);
     }
 
 
@@ -22,20 +24,22 @@ class ModuleController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'permission_id' => 'required',
             'icon' => 'required',
             'visible' => 'required',
             'type' => 'required',
             'payload' => 'required',
         ]);
-
-        Module::create($request->all());
-        return redirect()->route('modules.index')->with('status', 'Profile updated!');
+        $data = $request->all();
+        $data['payload'] = json_encode($data['payload']);
+        unset($data['roles']);
+        $module = Module::create($data);
+        $module->roles()->sync($request->input('roles'));
+        return response('',201);
     }
 
     public function create(Module $module)
     {
-        return Inertia::render('Module/Create', ['module' => $module]);
+        return Inertia::render('Module/Index', ['module' => $module]);
     }
 
     public function show(Module $module)
