@@ -29,12 +29,6 @@ console.log(props.modules)
             </div>
 
         </MainLayout>
-<!--            <div class="w-full h-20 bg-unibague-blue overflow-hidden flex items-center justify-between px-8 bottom-0">-->
-<!--                <div class="relative text-gray-300 text-md font-normal  capitalize">{{ user.name }}</div>-->
-<!--                <div class="relative text-gray-300 text-md font-normal italic"> Version 1.0</div>-->
-<!--            </div>-->
-
-
 
     </div>
 

@@ -48,18 +48,22 @@ class Module extends Model
     }
 
 
-    public static function getUserRoles(): Collection{
+    public static function getUserRoles(): \Illuminate\Support\Collection
+    {
         $user = auth()->user();
         $userRole = $user->role;
 
         $queryModuleIds = \DB::table('module_role')
             ->select(['module_id'])
-            ->where('role_id','=',$userRole->id)->get();
+            ->where('role_id','=',$userRole->id)
+            ->get();
 
         $modulesIds = [];
         foreach ($queryModuleIds as $module){
             $modulesIds[] = $module->module_id;
         }
-        return self::whereIn('id',$modulesIds)->get();
+        return self::whereIn('id',$modulesIds)
+            ->where('visible','=',1)
+            ->get();
     }
 }

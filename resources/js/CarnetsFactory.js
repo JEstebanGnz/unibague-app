@@ -1,26 +1,24 @@
-import Carnet from "@/Carnet.js";
+import Carnet from "../js/Carnet.js";
 class CarnetsFactory {
+    static  createCarnet(json) {
 
-    static createCarnet(json) {
-        console.log(json);
         let carnets = [];
-        json.forEach((element) => {
+         json.forEach((element) => {
             let newRole = null
-            try{
-                if (element.role == "Estudiante") {
-                    newRole = new Carnet( element.name, element.user, "Estudiante", element.identification, element.currentProgram, "", "#003D7C" )
+            try {
+                if (element.role === "Estudiante") {
+                    newRole = new Carnet(element.name, element.user, "Estudiante", element.identification, element.currentProgram, "", "#003D7C")
                 }
-                if (element.role == "Funcionario") {
-                    newRole = new Carnet( element.name, element.user, "Funcionario", element.identification, element.department, element.position, "#FF5F2C")
+                if (element.role === "Funcionario") {
+                    newRole = new Carnet(element.name, element.user, "Funcionario", element.identification, element.department, element.position, "#FF5F2C")
                 }
-                if (element.role == "Graduado") {
-                    newRole = new Carnet( element.name, element.user, "Egresado", element.identification, element.finishedProgram, "","#FFCC00")
+                if (element.role === "Graduado") {
+                    newRole = new Carnet(element.name, element.user, "Egresado", element.identification, element.finishedProgram, "", "#FFCC00")
                 }
-                if(newRole){
+                if (newRole) {
                     carnets.push(newRole)
                 }
-            }
-            catch (error){
+            } catch (error) {
                 console.log('Error creando carnet', error, element)
             }
 

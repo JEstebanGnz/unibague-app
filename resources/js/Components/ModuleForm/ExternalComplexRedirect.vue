@@ -8,15 +8,15 @@ const props = defineProps(
 )
 
 const IOSValue = () => {
-    console.log(props.payload)
+
     return props.payload.IOSLink || ''
 }
 const AndroidValue = () => {
-    console.log(props.payload.androidLink)
+
     return props.payload.androidLink || ''
 }
 const DefaultValue = () => {
-    console.log(props.payload.defaultLink)
+
     return props.payload.defaultLink || ''
 }
 

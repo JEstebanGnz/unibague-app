@@ -76,7 +76,7 @@ class User extends Authenticatable
     public function getUser (): string
     {
 
-        return 'juan.betancourt';
+       // return '2420171030';
         return explode('@',$this->email)[0];
     }
 

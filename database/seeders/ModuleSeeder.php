@@ -20,7 +20,8 @@ class ModuleSeeder extends Seeder
             'icon' => '/Images/carnet.svg',
             'visible' => true,
             'type' => 'InternalRedirect',
-            'payload' => '{"link":"/carnet"}'
+            'payload' => '{"link":"/carnet"}',
+
         ]);
 
         Module::create([
@@ -28,7 +29,8 @@ class ModuleSeeder extends Seeder
             'icon' => '/Images/SIGA.svg',
             'visible' => true,
             'type' => 'ExternalComplexRedirect',
-            'payload' => '{"IOSLink":"https://siga.unibague.edu.co/sgacampus/","AndroidLink":"https://siga.unibague.edu.co/sgacampus/","DefaultLink":"https://siga.unibague.edu.co/sgacampus/"}'
+            'payload' => '{"IOSLink":"https://siga.unibague.edu.co/sgacampus/","AndroidLink":"https://siga.unibague.edu.co/sgacampus/","DefaultLink":"https://siga.unibague.edu.co/sgacampus/"}',
+
         ]);
 
         Module::create([
@@ -36,7 +38,8 @@ class ModuleSeeder extends Seeder
             'icon' => '/Images/qrcode.svg',
             'visible' => false,
             'type' => 'InternalRedirect',
-            'payload' => '{"link":"/scanner"}'
+            'payload' => '{"link":"/scanner"}',
+
         ]);
 
         Module::create([
@@ -44,7 +47,8 @@ class ModuleSeeder extends Seeder
             'icon' => '/Images/config.svg',
             'visible' => false,
             'type' => 'InternalRedirect',
-            'payload' => '{"link":"/users"}'
+            'payload' => '{"link":"/users"}',
+
 
         ]);
 
@@ -53,7 +57,8 @@ class ModuleSeeder extends Seeder
             'icon' => '/Images/carnet.svg',
             'visible' => true,
             'type' => 'InternalRedirect',
-            'payload' => '{"link":"/carnet"}'
+            'payload' => '{"link":"/carnet"}',
+
         ]);
 
         Module::create([
@@ -61,7 +66,8 @@ class ModuleSeeder extends Seeder
             'icon' => '/Images/SIGA.svg',
             'visible' => true,
             'type' => 'ExternalComplexRedirect',
-            'payload' => '{"IOSLink":"https://siga.unibague.edu.co/sgacampus/","AndroidLink":"https://siga.unibague.edu.co/sgacampus/","DefaultLink":"https://siga.unibague.edu.co/sgacampus/"}'
+            'payload' => '{"IOSLink":"https://siga.unibague.edu.co/sgacampus/","AndroidLink":"https://siga.unibague.edu.co/sgacampus/","DefaultLink":"https://siga.unibague.edu.co/sgacampus/"}',
+
         ]);
 
         Module::create([
@@ -69,7 +75,8 @@ class ModuleSeeder extends Seeder
             'icon' => '/Images/qrcode.svg',
             'visible' => false,
             'type' => 'InternalRedirect',
-            'payload' => '{"link":"/scanner"}'
+            'payload' => '{"link":"/scanner"}',
+
         ]);
 
         Module::create([
@@ -77,7 +84,7 @@ class ModuleSeeder extends Seeder
             'icon' => '/Images/config.svg',
             'visible' => false,
             'type' => 'InternalRedirect',
-            'payload' => '{"link":"/users"}'
+            'payload' => '{"link":"/users"}',
 
         ]);
 
