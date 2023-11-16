@@ -1,17 +1,17 @@
 <script setup>
 
-import MainLayout from '@/Layouts/MainLayout.vue';
+import MainLayout from '../Layouts/MainLayout.vue';
 import {computed} from 'vue'
 import {usePage} from '@inertiajs/vue3'
-import ComplexRedirect from "@/Components/Module/ComplexRedirect.vue";
-import InternalRedirect from "@/Components/Module/InternalRedirect.vue";
-import SimpleRedirect from "@/Components/Module/SimpleRedirect.vue";
+import ComplexRedirect from "../Components/Module/ComplexRedirect.vue";
+import InternalRedirect from "../Components/Module/InternalRedirect.vue";
+import SimpleRedirect from "../Components/Module/SimpleRedirect.vue";
 
 
 const page = usePage()
 const user = computed(() => page.props.auth.user)
 const props = defineProps({modules: Array});
-console.log(props.modules)
+
 </script>
 
 <template>

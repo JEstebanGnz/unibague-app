@@ -29,14 +29,14 @@ class ModuleSeeder extends Seeder
             'icon' => '/Images/SIGA.svg',
             'visible' => true,
             'type' => 'ExternalComplexRedirect',
-            'payload' => '{"IOSLink":"https://siga.unibague.edu.co/sgacampus/","AndroidLink":"https://siga.unibague.edu.co/sgacampus/","DefaultLink":"https://siga.unibague.edu.co/sgacampus/"}',
+            'payload' => '{"IOSLink":"https://siga.unibague.edu.co/sgacampus/","androidLink":"https://siga.unibague.edu.co/sgacampus/","defaultLink":"https://siga.unibague.edu.co/sgacampus/"}',
 
         ]);
 
         Module::create([
             'name' => 'Scaner',
             'icon' => '/Images/qrcode.svg',
-            'visible' => false,
+            'visible' => true,
             'type' => 'InternalRedirect',
             'payload' => '{"link":"/scanner"}',
 
@@ -45,7 +45,7 @@ class ModuleSeeder extends Seeder
         Module::create([
             'name' => 'Ajustes',
             'icon' => '/Images/config.svg',
-            'visible' => false,
+            'visible' => true,
             'type' => 'InternalRedirect',
             'payload' => '{"link":"/users"}',
 
@@ -55,7 +55,7 @@ class ModuleSeeder extends Seeder
         Module::create([
             'name' => 'Carnet',
             'icon' => '/Images/carnet.svg',
-            'visible' => true,
+            'visible' => false,
             'type' => 'InternalRedirect',
             'payload' => '{"link":"/carnet"}',
 
@@ -64,7 +64,7 @@ class ModuleSeeder extends Seeder
         Module::create([
             'name' => 'SIGA',
             'icon' => '/Images/SIGA.svg',
-            'visible' => true,
+            'visible' => false,
             'type' => 'ExternalComplexRedirect',
             'payload' => '{"IOSLink":"https://siga.unibague.edu.co/sgacampus/","AndroidLink":"https://siga.unibague.edu.co/sgacampus/","DefaultLink":"https://siga.unibague.edu.co/sgacampus/"}',
 

@@ -24,7 +24,7 @@ const emit = defineEmits(['cambiarCarnet']);
 
 <template>
     <div
-        class="w-full sm:h-screen sm:w-2/4 md:w-1/3 xl:w-2/6 flex flex-col min-h-screen mx-auto bg-unibague-blue bg-opacity-3 rounded-xl mb-2 relative md:shadow-2xl">
+        class="w-full h-full md:w-1/3 xl:w-2/6 flex flex-col md:h-full mx-auto bg-unibague-blue bg-opacity-3 rounded-xl mb-2 relative md:shadow-2xl">
         <div>
             <div class="relative flex" :style="{ background:color }">
                 <button class="absolute top-5 left-7" @click="$emit('cambiarCarnet')" v-if="showChangeButton">

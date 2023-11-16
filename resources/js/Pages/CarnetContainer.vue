@@ -9,6 +9,7 @@ const loading = ref(true)
 
 const getUserInfo = async () =>{
     const url = route('personalInfo')
+    console.log(url)
     try {
         const response = await axios.get(url)
         loading.value = false

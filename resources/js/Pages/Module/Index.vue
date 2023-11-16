@@ -1,5 +1,4 @@
 <script setup>
-import {defineProps} from 'vue';
 import {ref, onMounted, watch} from 'vue'
 import AdminPannel from "@/Pages/AdminPannel.vue";
 import AddButton from "@/Components/AddButton.vue";
@@ -42,6 +41,7 @@ const addNew = () => {
     return isOpen.value
 }
 
+
 const closeModal = () => {
     isOpen.value = false;
 }
@@ -59,27 +59,27 @@ const createModule = async () => {
 }
 
 const editModule = (moduleId) => {
-
-let selectedModule = {...modules.value[moduleId]}
+    editorIsOpen.value = true
+    let selectedModule = {...modules.value[moduleId]}
     selectedModule.roles = formatRoles(selectedModule.roles)
     selectedModule.payload = JSON.parse(selectedModule.payload)
     editedForm.value = selectedModule;
-console.log(editedForm.value)
+    console.log(editedForm.value)
+    console.log(editorIsOpen.value)
 
 }
 const sendEditedModule = async () => {
-    const url = route('modules.update',{module:editedForm.value.id})
+    const url = route('modules.update', {module: editedForm.value.id})
     try {
         await axios.patch(url, editedForm.value)
         location.reload()
-    }
-    catch (e){
+    } catch (e) {
         console.log(e, 'Error de edicion')
         return alert('No se pudo actualizar')
     }
 }
 const formatRoles = (roles) => {
-    return roles.map( (role) => {
+    return roles.map((role) => {
         return role.id
     })
 }
@@ -126,23 +126,23 @@ const refreshModules = (moduleId) => {
                             <thead>
                             <tr>
                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    Name
+                                    Nombre
                                 </th>
 
                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    Icon
+                                    Icono
                                 </th>
                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                     Tipo
                                 </th>
                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    Visibility
+                                    Visibilidad
                                 </th>
                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    Delete
+                                    Editar
                                 </th>
                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    Edit
+                                    Eliminar
                                 </th>
 
 
@@ -193,8 +193,24 @@ const refreshModules = (moduleId) => {
                                     <div class="flex items-center">
                                         <div class="ml-4">
                                             <div class="text-sm leading-5 text-gray-500">
-                                                <button @click="deleteModule(module.id)">
+                                                <button @click="editModule(index)">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                         class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
+                                                    </svg>
+                                                </button>
 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 border-b border-gray-200">
+                                    <div class="flex items-center">
+                                        <div class="ml-4">
+                                            <div class="text-sm leading-5 text-gray-500">
+                                                <button @click="deleteModule(module.id)">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                          viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                          class="w-6 h-6">
@@ -206,24 +222,7 @@ const refreshModules = (moduleId) => {
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 border-b border-gray-200">
-                                    <div class="flex items-center">
-                                        <div class="ml-4">
-                                            <div class="text-sm leading-5 text-gray-500">
-                                                <button  @click="editModule(index)" data-modal-target="default-modal"
-                                                        data-modal-toggle="default-modal">
 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                         class="w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
-                                                    </svg>
-                                                   </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -231,13 +230,11 @@ const refreshModules = (moduleId) => {
                 </div>
             </div>
         </div>
-        <!-- Main modal -->
-        <div id="default-modal" tabindex="-1" aria-hidden="true"
-             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-            <div class="  bg-black bg-opacity-50">
-                <div
-                    class="bg-white p-8 rounded-lg shadow-lg h-2/3 overflow-auto">
 
+        <AddButton @click="addNew" class=" ml-6 mt-8 "/>
+        <template v-if="editorIsOpen">
+            <div class=" fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+                <div class="bg-white p-8 rounded-lg shadow-lg h-2/3 overflow-auto">
                     <div class="mb-4">
                         <label for="name"
                                class="text-gray-700">Nombre</label>
@@ -315,7 +312,7 @@ const refreshModules = (moduleId) => {
 
                     <div class="text-center">
                         <button type="button"
-                                data-modal-hide="default-modal"
+                                @click="() => { editorIsOpen=false}"
                                 class="px-4 py-2 mr-2 bg-gray-300 text-gray-700 rounded-full hover:bg-gray-400 transition duration-200">
                             Cerrar
                         </button>
@@ -324,15 +321,9 @@ const refreshModules = (moduleId) => {
                             Aceptar
                         </button>
                     </div>
-
-
                 </div>
-
             </div>
-        </div>
-
-        <AddButton @click="addNew" class=" ml-6 mt-8 "/>
-
+        </template>
         <template v-if="isOpen">
             <div class=" fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
                 <div class="bg-white p-8 rounded-lg shadow-lg h-2/3 overflow-auto">

@@ -1,5 +1,5 @@
 <script setup>
-import Module from "@/Components/Module/Module.vue";
+import Module from "../Module/Module.vue";
 
 const props = defineProps({payload: String, moduleName: String, icon:String});
 const payload = JSON.parse(props.payload);
