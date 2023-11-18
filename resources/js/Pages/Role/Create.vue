@@ -1,16 +1,16 @@
-<script setup>
+<!--<script setup>-->
 
-defineProps({ roles: Array })
+<!--defineProps({ roles: Array })-->
 
-</script>
+<!--</script>-->
 
-<template>
-    <form method="POST" action="/roles">
-        <input type="text" name="name" id="" placeholder="nombre">
-
-
-        <button type="submit">Enviar</button>
+<!--<template>-->
+<!--    <form method="POST" action="/roles">-->
+<!--        <input type="text" name="name" id="" placeholder="nombre">-->
 
 
-    </form>
-</template>
+<!--        <button type="submit">Enviar</button>-->
+
+
+<!--    </form>-->
+<!--</template>-->

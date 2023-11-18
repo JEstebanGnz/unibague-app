@@ -46,8 +46,8 @@ const handlerRedirection = () => {
 </script>
 
 <template>
-    <div @click="handlerRedirection">
-        <Module :moduleName="moduleName" :icon="icon" ></Module>
+    <div  >
+        <Module :moduleName="moduleName" :icon="icon" @handle-click="handlerRedirection"></Module>
     </div>
 </template>
 
