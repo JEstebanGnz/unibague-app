@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Database\Factories\UserFactory;
 use Eloquent;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,7 +18,6 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\PersonalAccessToken;
 use Ospina\CurlCobain\CurlCobain;
 
@@ -76,8 +74,8 @@ class User extends Authenticatable
     public function getUser (): string
     {
 
-        return 'juan.betancourt';
-        return explode('@',$this->email)[0];
+        return '2420171030';
+       // return explode('@',$this->email)[0];
     }
 
 
@@ -95,7 +93,6 @@ class User extends Authenticatable
 
     /**
      * Genera un codigo QR seguro y encriptado
-     * @param $name
      * @param $email
      * @return string
      */
@@ -125,7 +122,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $appends = [
-        'profile_photo_url',
-    ];
+//    protected $appends = [
+//        'profile_photo_url',
+//    ];
 }

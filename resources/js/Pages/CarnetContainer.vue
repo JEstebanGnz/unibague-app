@@ -2,19 +2,34 @@
 import {ref, onBeforeMount} from 'vue'
 import CarnetsFactory from "../CarnetsFactory.js";
 import Carnet from '../Pages/Carnet.vue';
+import CarnetSkeleton from "@/Pages/CarnetSkeleton.vue";
 
-const props = defineProps({data: Array, qrCode: String})
+const props = defineProps({ qrCode: String})
+const loading = ref(true)
+
+const getUserInfo = async () =>{
+    const url = route('personalInfo')
+    console.log(url)
+    try {
+        const response = await axios.get(url)
+        loading.value = false
+        console.log(response.data)
+        return response.data
+    }
+    catch (e){
+        console.log("No se obtuvo informacion",e)
+        return alert("No se encontro informacion")
+    }
+}
 
 const carnets = ref([])
-let index = ref(0);
-onBeforeMount(() => {
-    carnets.value = CarnetsFactory.createCarnet(props.data);
-    console.log(carnets.value)
 
+let index = ref(0);
+onBeforeMount( async () => {
+    carnets.value =   CarnetsFactory.createCarnet(await getUserInfo());
 })
 
 const showNextCard = () => {
-
 
     if (index.value < carnets.value.length) {
         index.value++;
@@ -27,12 +42,11 @@ const showNextCard = () => {
 </script>
 
 <template>
-    <Carnet :image="carnets[index].image" :name="carnets[index].name" :user="carnets[index].user"
+    <CarnetSkeleton v-if="loading"/>
+    <Carnet v-else :image="carnets[index].image" :name="carnets[index].name" :user="carnets[index].user"
             :role="carnets[index].role" :identification="carnets[index].identification"
             :primaryInfo="carnets[index].primaryInfo" :secondaryInfo="carnets[index].secondaryInfo" :qrCode="qrCode"
             :color="carnets[index].color" @cambiar-carnet="showNextCard" :showChangeButton="carnets.length > 1">
-
-
     </Carnet>
 </template>
 

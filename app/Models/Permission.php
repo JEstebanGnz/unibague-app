@@ -8,9 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens; */
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 use PhpParser\Node\Expr\AssignOp\Mod;
 
 
@@ -20,8 +23,8 @@ use PhpParser\Node\Expr\AssignOp\Mod;
  * @property int $id
  * @property string $name
  * @property string $description
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Permission newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Permission newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Permission query()
@@ -30,18 +33,13 @@ use PhpParser\Node\Expr\AssignOp\Mod;
  * @method static \Illuminate\Database\Eloquent\Builder|Permission whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Permission whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Permission whereUpdatedAt($value)
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Role> $roles
+ * @property-read Collection<int, Role> $roles
  * @property-read int|null $roles_count
- * @property-read \App\Models\Module|null $module
- * @mixin \Eloquent
+ * @property-read Module|null $module
+ * @mixin Eloquent
  */
 class Permission extends Model
 {
     protected $guarded = [];
-    public function roles () :HasMany {
-        return $this->hasMany(Role::class);
-    }
-    public function module () :BelongsTo {
-        return $this->belongsTo(Module::class);
-    }
+
 }

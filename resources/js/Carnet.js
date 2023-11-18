@@ -13,6 +13,8 @@ class Carnet {
     getImage (){
         return `https://siga.unibague.edu.co/sgacampus/images/dynamic/foto/1/${this.identification}/${this.identification}.jpg`
     }
+
+
 }
 
 export default Carnet;

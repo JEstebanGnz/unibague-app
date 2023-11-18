@@ -24,7 +24,7 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                'unibague-blue': '#003D7C',
+                        'unibague-blue': '#003D7C',
             },
             opacity: {
                 '2': '.02',

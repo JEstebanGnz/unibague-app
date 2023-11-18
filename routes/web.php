@@ -18,13 +18,13 @@ Route::get('/', [\App\Http\Controllers\AuthController::class, 'redirect'] )->nam
 Route::get('/users/byToken', [\App\Http\Controllers\UserController::class,'getUserByToken']);
 //Route::get('/carnet',[\App\Http\Controllers\UserController::class,'getUserByToken']);
 Route::get('/carnet', [\App\Http\Controllers\CarnetController::class,'carnetView'])->middleware(['auth'])->name('carnet');
-Route::get('/ajustes', [\App\Http\Controllers\AdminPannelController::class, 'adminPannelView'])->middleware(['auth'])->name('ajustes');
-Route::get('/scanner', [\App\Http\Controllers\ScannerController::class,'scannerView'] )->middleware(['auth'])->name('scanner');
+Route::get('/users', [\App\Http\Controllers\AdminPannelController::class, 'adminPannelView'])->middleware(['auth'])->middleware('can:isAdmin')->name('ajustes');
+Route::get('/scanner', [\App\Http\Controllers\ScannerController::class,'scannerView'] )->middleware(['auth'])->middleware('can:isScanner')->name('scanner');
+Route::get('/data', [\App\Http\Controllers\DataController::class,'userInfo'] )->middleware(['auth'])->name('personalInfo');
 
-Route::resource('roles', \App\Http\Controllers\RoleController::class)->middleware(['auth']);
-Route::resource('users', \App\Http\Controllers\UserController::class)->middleware(['auth']);
-Route::resource('permissions', \App\Http\Controllers\PermissionController::class)->middleware(['auth']);
-Route::resource('modules', \App\Http\Controllers\ModuleController::class)->middleware(['auth']);
+Route::resource('roles', \App\Http\Controllers\RoleController::class)->middleware(['auth'])->middleware('can:isAdmin');
+Route::resource('users', \App\Http\Controllers\UserController::class)->middleware(['auth'])->middleware('can:isAdmin');
+Route::resource('modules', \App\Http\Controllers\ModuleController::class)->middleware(['auth'])->middleware('can:isAdmin');
 
 Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class,'dashboardView'])->middleware(['auth']);
 

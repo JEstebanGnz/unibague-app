@@ -1,7 +1,7 @@
 <script setup>
 import Module from "@/Components/Module/Module.vue";
 
-const props = defineProps({payload: Object, moduleName: String, icon: String});
+const props = defineProps({payload: String, moduleName: String, icon: String});
 const payload = JSON.parse(props.payload)
 
 const handlerRedirection = () => {
