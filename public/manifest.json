@@ -1,0 +1,17 @@
+{
+    "name": "Unibague App",
+    "short_name": "Unibague",
+    "start_url": "/index.php",
+    "background_color": "#003D7C",
+    "description": "Unibague App",
+    "display": "standalone",
+    "theme_color": "#003D7C",
+    "icons": [
+        {
+            "src": "logo.PNG",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
