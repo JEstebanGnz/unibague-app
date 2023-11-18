@@ -17,75 +17,74 @@ class ModuleSeeder extends Seeder
 
         Module::create([
             'name' => 'Carnet',
-            'permission_id' => '1',
             'icon' => '/Images/carnet.svg',
             'visible' => true,
             'type' => 'InternalRedirect',
-            'payload' => '{"link":"/carnet"}'
+            'payload' => '{"link":"/carnet"}',
+
         ]);
 
         Module::create([
             'name' => 'SIGA',
-            'permission_id' => '2',
             'icon' => '/Images/SIGA.svg',
             'visible' => true,
             'type' => 'ExternalComplexRedirect',
-            'payload' => '{"IOSLink":"https://siga.unibague.edu.co/sgacampus/","AndroidLink":"https://siga.unibague.edu.co/sgacampus/","DefaultLink":"https://siga.unibague.edu.co/sgacampus/"}'
+            'payload' => '{"IOSLink":"https://siga.unibague.edu.co/sgacampus/","androidLink":"https://siga.unibague.edu.co/sgacampus/","defaultLink":"https://siga.unibague.edu.co/sgacampus/"}',
+
         ]);
 
         Module::create([
             'name' => 'Scaner',
-            'permission_id' => '3',
             'icon' => '/Images/qrcode.svg',
-            'visible' => false,
+            'visible' => true,
             'type' => 'InternalRedirect',
-            'payload' => '{"link":"/scanner"}'
+            'payload' => '{"link":"/scanner"}',
+
         ]);
 
         Module::create([
             'name' => 'Ajustes',
-            'permission_id' => '4',
             'icon' => '/Images/config.svg',
-            'visible' => false,
+            'visible' => true,
             'type' => 'InternalRedirect',
-            'payload' => '{"link":"/users"}'
+            'payload' => '{"link":"/users"}',
+
 
         ]);
 
         Module::create([
             'name' => 'Carnet',
-            'permission_id' => '1',
             'icon' => '/Images/carnet.svg',
-            'visible' => true,
+            'visible' => false,
             'type' => 'InternalRedirect',
-            'payload' => '{"link":"/carnet"}'
+            'payload' => '{"link":"/carnet"}',
+
         ]);
 
         Module::create([
             'name' => 'SIGA',
-            'permission_id' => '2',
             'icon' => '/Images/SIGA.svg',
-            'visible' => true,
+            'visible' => false,
             'type' => 'ExternalComplexRedirect',
-            'payload' => '{"IOSLink":"https://siga.unibague.edu.co/sgacampus/","AndroidLink":"https://siga.unibague.edu.co/sgacampus/","DefaultLink":"https://siga.unibague.edu.co/sgacampus/"}'
+            'payload' => '{"IOSLink":"https://siga.unibague.edu.co/sgacampus/","AndroidLink":"https://siga.unibague.edu.co/sgacampus/","DefaultLink":"https://siga.unibague.edu.co/sgacampus/"}',
+
         ]);
 
         Module::create([
             'name' => 'Scaner',
-            'permission_id' => '3',
             'icon' => '/Images/qrcode.svg',
             'visible' => false,
             'type' => 'InternalRedirect',
-            'payload' => '{"link":"/scanner"}'
+            'payload' => '{"link":"/scanner"}',
+
         ]);
 
         Module::create([
             'name' => 'Ajustes',
-            'permission_id' => '4',
             'icon' => '/Images/config.svg',
             'visible' => false,
             'type' => 'InternalRedirect',
-            'payload' => '{"link":"/users"}'
+            'payload' => '{"link":"/users"}',
 
         ]);
 

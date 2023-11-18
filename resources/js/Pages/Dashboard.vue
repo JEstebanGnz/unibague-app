@@ -1,11 +1,11 @@
 <script setup>
 
-import MainLayout from '@/Layouts/MainLayout.vue';
+import MainLayout from '../Layouts/MainLayout.vue';
 import {computed} from 'vue'
 import {usePage} from '@inertiajs/vue3'
-import ComplexRedirect from "@/Components/Module/ComplexRedirect.vue";
-import InternalRedirect from "@/Components/Module/InternalRedirect.vue";
-import SimpleRedirect from "@/Components/Module/SimpleRedirect.vue";
+import ComplexRedirect from "../Components/Module/ComplexRedirect.vue";
+import InternalRedirect from "../Components/Module/InternalRedirect.vue";
+import SimpleRedirect from "../Components/Module/SimpleRedirect.vue";
 
 
 const page = usePage()
@@ -29,12 +29,6 @@ const props = defineProps({modules: Array});
             </div>
 
         </MainLayout>
-<!--            <div class="w-full h-20 bg-unibague-blue overflow-hidden flex items-center justify-between px-8 bottom-0">-->
-<!--                <div class="relative text-gray-300 text-md font-normal  capitalize">{{ user.name }}</div>-->
-<!--                <div class="relative text-gray-300 text-md font-normal italic"> Version 1.0</div>-->
-<!--            </div>-->
-
-
 
     </div>
 

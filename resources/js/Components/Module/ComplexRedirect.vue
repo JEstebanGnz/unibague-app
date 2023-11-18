@@ -1,7 +1,7 @@
 <script setup>
-import Module from "@/Components/Module/Module.vue";
+import Module from "../Module/Module.vue";
 
-const props = defineProps({payload: Object, moduleName: String, icon:String});
+const props = defineProps({payload: String, moduleName: String, icon:String});
 const payload = JSON.parse(props.payload);
 
 const getMobileOperatingSystem = () => {
@@ -26,28 +26,22 @@ const getMobileOperatingSystem = () => {
 }
 
 const handlerRedirection = () => {
-    if (payload.externalRedirectType === 'simple') {
-        window.open(payload.link, '_blank');
-    }
-    else{
-        if (getMobileOperatingSystem() === "iOS")
+    const OS = getMobileOperatingSystem();
+        if (OS === "iOS")
         {
             window.open(payload.IOSLink, '_blank');
         }
-        else if (getMobileOperatingSystem() === "unknown")
+        else if (OS === "Android")
         {
-            window.open(payload.DefaultLink, '_blank');
+            window.open(payload.androidLink, '_blank');
         }
-        else if (getMobileOperatingSystem() === "Android")
+        else if (OS === "unknown")
         {
-            window.open(payload.AndroidLink, '_blank');
+            window.open(payload.defaultLink, '_blank');
         }
-    }
+
+
 }
-
-
-
-
 
 </script>
 

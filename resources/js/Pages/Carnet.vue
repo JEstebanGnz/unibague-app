@@ -3,6 +3,7 @@
 import QrcodeVue from 'qrcode.vue';
 import logo from "/public/Images/logoUnibague.png"
 
+
 const props = defineProps({
     image: String,
     name: String,
@@ -23,7 +24,7 @@ const emit = defineEmits(['cambiarCarnet']);
 
 <template>
     <div
-        class="w-full sm:h-screen sm:w-2/4 md:w-1/3 xl:w-1/5 flex flex-col min-h-screen mx-auto bg-unibague-blue bg-opacity-3 rounded-xl mb-2 relative">
+        class="w-full h-full md:w-1/3 xl:w-2/6 flex flex-col md:h-full mx-auto bg-unibague-blue bg-opacity-3 rounded-xl mb-2 relative md:shadow-2xl">
         <div>
             <div class="relative flex" :style="{ background:color }">
                 <button class="absolute top-5 left-7" @click="$emit('cambiarCarnet')" v-if="showChangeButton">
@@ -33,8 +34,8 @@ const emit = defineEmits(['cambiarCarnet']);
                               d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/>
                     </svg>
                 </button>
-                <div class="flex justify-center items-center w-full">
-                    <img class="rounded-full w-2/5 h-3/5 border-white border-solid border-2 bg-white object-contain"
+                <div class="flex justify-center items-center w-full mt-2">
+                    <img class="rounded-full w-2/5 md:w-2/5 md:h-4/5 h-5/6 border-white border-solid border-2 bg-white "
                          :src="props.image"
                          alt="">
                 </div>
@@ -57,7 +58,7 @@ const emit = defineEmits(['cambiarCarnet']);
 
 
         <div
-            class=" px-12 lg:my-4 my-4 flex flex-col h-32 mx-auto font-bold text-lg justify-between text-center"
+            class=" px-12 lg:my-4 my-4 flex flex-col h-32 mx-auto font-bold text-lg xl:text-2xl justify-between text-center"
             :class="{'my-4': role === 'Funcionario'}">
             <h2>{{ role }}</h2>
             <h2>{{ identification }}</h2>

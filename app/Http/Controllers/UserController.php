@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -12,7 +13,8 @@ class UserController extends Controller
     public function index(): \Inertia\Response
     {
         $users = User::all();
-        return Inertia::render('User/Index', ['usersProp' => $users]);
+        $avaliableRoles = Role::all();
+        return Inertia::render('User/Index', ['usersProp' => $users, 'avaliableRoles'=>$avaliableRoles]);
     }
 
     public function store(Request $request)
@@ -41,9 +43,6 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'qrCode' => 'required',
             'role_id' => 'required',
         ]);
 
