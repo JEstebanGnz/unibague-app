@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Unibague App'),
 
     /*
     |--------------------------------------------------------------------------
@@ -186,6 +186,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'LaravelPwa' => \Ladumor\LaravelPwa\LaravelPwa::class,
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 

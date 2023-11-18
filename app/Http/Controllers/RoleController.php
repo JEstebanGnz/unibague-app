@@ -44,8 +44,6 @@ class RoleController extends Controller
         ]);
 
         $role->fill($request->post())->save();
-
-
     }
 
     public function destroy(Role $role): Response
