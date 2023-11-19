@@ -17,7 +17,7 @@ const props = defineProps({modules: Array});
 <template>
     <div class="h-screen">
         <MainLayout>
-            <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-0.1 gap-y-10 py-6 px-5 justify-items-center place-items-center md:px-16 ">
+            <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 w-full gap-x-8 gap-y-10 py-6 px-5 items-center place-items-center md:px-16 ">
                 <template v-for="module in modules">
                     <ComplexRedirect v-if="module.type  === 'ExternalComplexRedirect'" :moduleName="module.name"
                                      :icon="module.icon" :payload="module.payload"/>

@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        $users = User::all();
+        $users = User::with('role')->get();
         $avaliableRoles = Role::all();
         return Inertia::render('User/Index', ['usersProp' => $users, 'avaliableRoles'=>$avaliableRoles]);
     }
@@ -47,7 +47,7 @@ class UserController extends Controller
         ]);
 
         $user->fill($request->post())->save();
-        return redirect()->route('/users')->with('success','Company Has Been updated successfully');
+        return response('',201);
 
     }
 
