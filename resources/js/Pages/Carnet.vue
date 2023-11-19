@@ -50,7 +50,7 @@ const emit = defineEmits(['cambiarCarnet']);
 
 
                 <div class="absolute inset-0 flex flex-col text-center">
-                    <h3 class="text-white text-xl font-bold capitalize">{{ name }}</h3>
+                    <div class="text-white text-xl xl:text-2xl font-bold capitalize">{{ name }}</div>
                     <h3 class="text-white text-lg font-light">{{ user }}</h3>
                 </div>
             </div>
