@@ -7,29 +7,31 @@ const props = defineProps({usersProp: Array, avaliableRoles:Array});
 const isOpen = ref(false);
 const users = ref([])
 const isOpenEditor = ref(false);
-const role_id = ref('')
+const roleId= ref('')
+const editedUserId = ref(null)
 
-const editUser = (userIndex) => {
+console.log(props.usersProp)
+
+const editUser = (userId) => {
     isOpenEditor.value = true
-    console.log(role_id.value)
+    editedUserId.value = userId
+
 }
 
 const sendEditedUser = async () => {
-    // const url = route('users.update', {user: editedUser.value.id})
-    // try {
-    //     await axios.patch(url, editedUser.value)
-    //     location.reload()
-    // } catch (e) {
-    //     return ('No se pudo actualizar el usuario', e)
-    // }
+    const url = route('users.update', {user: editedUserId.value})
+    try {
+        await axios.patch(url, {role_id:roleId.value})
+        location.reload()
+    } catch (e) {
+        return ('No se pudo actualizar el usuario', e)
+    }
 }
 
 onMounted(() => {
     users.value = {...props.usersProp}
 })
-const sendIdRol = (rolId)=>{
-    console.log(rolId)
-}
+
 const deleteUser = async (userId) => {
     if (!confirm('seguro desea borrar?')) {
         return
@@ -68,7 +70,7 @@ const refreshUser = (userId) => {
                                 </th>
 
                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    Rol ID
+                                    Rol
                                 </th>
                                 <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                     Editar Rol
@@ -106,7 +108,7 @@ const refreshUser = (userId) => {
                                     <div class="flex items-center">
                                         <div class="ml-4">
                                             <div class="text-sm font-medium leading-5 text-gray-900">
-                                                {{ user.role_id }}
+                                                {{ user.role.name }}
                                             </div>
                                         </div>
 
@@ -117,7 +119,7 @@ const refreshUser = (userId) => {
                                     <div class="flex items-center">
                                         <div class="ml-4">
                                             <div class="text-sm leading-5 text-gray-500">
-                                                <button @click="editUser(index)">
+                                                <button @click="editUser(user.id)">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                          viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                          class="w-6 h-6">
@@ -159,9 +161,9 @@ const refreshUser = (userId) => {
 
                     <div class="mb-4">
                         <label for="role_id" class="text-gray-700">Id del Rol</label>
-                        <select  name="role_id" id="role_id"  v-model="role_id"
+                        <select  name="role_id" id="role_id"  v-model="roleId"
                                class="w-full mt-2 px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            <option v-for="avaliableRole in avaliableRoles" @click="sendIdRol(avaliableRole.id)">
+                            <option v-for="avaliableRole in avaliableRoles" :key="avaliableRole.id" :value="avaliableRole.id" >
                                 {{avaliableRole.name}}
                             </option>
                         </select>

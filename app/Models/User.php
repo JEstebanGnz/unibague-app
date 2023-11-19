@@ -61,16 +61,7 @@ class User extends Authenticatable
     public function role (): BelongsTo{
         return $this->belongsTo(Role::class);
     }
-    public function getUserInitial (): string
-    {
-        return $this->name[0];
 
-    }
-    public function getUserName (): string
-    {
-        return $this->name;
-
-    }
     public function getUser (): string
     {
 

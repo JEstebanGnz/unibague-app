@@ -13,9 +13,9 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
-    /*public function run(): void
+    public function run(): void
     {
-        $userRole = Role::where('name','=','user')->first();
+        $userRole = Role::where('name','=','admin')->first();
         $name = 'SARA VALENTINA CUY RAMIREZ';
         $email ='2420181016@estudiantesunibague.edu.co';
         User::create([
@@ -24,5 +24,5 @@ class UserSeeder extends Seeder
             'qrCode' => User::generateQrCode($name, $email),
             'role_id' => $userRole->id,]);
 
-    }*/
+    }
 }
