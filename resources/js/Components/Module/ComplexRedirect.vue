@@ -35,7 +35,7 @@ const handlerRedirection = () => {
         {
             window.open(payload.androidLink, '_blank');
         }
-        else if (OS === "unknown")
+        else if (OS === "unknown" || OS === "Windows Phone")
         {
             window.open(payload.defaultLink, '_blank');
         }

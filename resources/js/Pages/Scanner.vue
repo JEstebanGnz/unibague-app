@@ -67,26 +67,26 @@ const clipBoard = async (identification) => {
 
                     <tr v-for="user in userRoles"
                         class="px-8 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <template v-if="user.role === 'graduated'">
+                        <template v-if="user.role === 'Graduado'">
                             <td class="py-4 px-6 font-bold">Programa finalizado:</td>
-                            <td class="py-4 px-6">{{ user.finishedProgram.join(', ') }}</td>
+                            <td class="py-4 px-6">{{ user.finishedProgram }}</td>
                         </template>
-                        <template v-if="user.role === 'student'">
+                        <template v-if="user.role === 'Estudiante'">
                             <td class="py-4 px-6 font-bold">Programa actual</td>
-                            <td class="py-4 px-6">{{ user.currentProgram.join(', ') }}</td>
+                            <td class="py-4 px-6">{{ user.currentProgram }}</td>
                         </template>
                     </tr>
 
-                    <tr v-for="user in userRoles" v-show="user.role === 'employee'"
+                    <tr v-for="user in userRoles" v-show="user.role === 'Funcionario'"
                         class="px-8 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <template v-if="user.role === 'employee'">
+                        <template v-if="user.role === 'Funcionario'">
                             <td class="py-4 px-6 font-bold">Departamento</td>
                             <td class="py-4 px-6">{{ user.department }}</td>
                         </template>
                     </tr>
-                    <tr v-for="user in userRoles" v-show="user.role === 'employee'"
+                    <tr v-for="user in userRoles" v-show="user.role === 'Funcionario'"
                         class="px-8 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <template v-if="user.role === 'employee'">
+                        <template v-if="user.role === 'Funcionario'">
                             <td class="py-4 px-6 font-bold">Cargo</td>
                             <td class="py-4 px-6">{{ user.position }}</td>
                         </template>

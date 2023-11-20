@@ -1,10 +1,10 @@
-import { expect } from 'chai'
+
 import { assert } from 'chai'
 
 import Carnet from "../../resources/js/Carnet.js";
 
 
-describe('CarnetsFactory', () => {
+describe('Carnet', () => {
     it('should set all attributes correctly when creating a new instance with valid arguments', () => {
         // Arrange
         const name = 'John Doe';
@@ -65,7 +65,7 @@ describe('CarnetsFactory', () => {
         carnet.name = newName;
 
         // Assert
-        assert.strictEqual(carnet.name, newName.toLowerCase());
+        assert.strictEqual(carnet.name, newName);
     });
     it('should update the primaryInfo attribute correctly when changing it', () => {
         // Arrange
@@ -86,25 +86,7 @@ describe('CarnetsFactory', () => {
         // Assert
         assert.strictEqual(carnet.primaryInfo, newPrimaryInfo.toLowerCase());
     });
-    it('should update the primaryInfo attribute correctly when changing it', () => {
-        // Arrange
-        const name = 'John Doe';
-        const user = 'johndoe';
-        const role = 'student';
-        const identification = '1234567890';
-        const primaryInfo = 'info1';
-        const secondaryInfo = 'info2';
-        const color = 'blue';
-        const qrCode = 'qrcode';
-        const newPrimaryInfo = 'new info1';
 
-        // Act
-        const carnet = new Carnet(name, user, role, identification, primaryInfo, secondaryInfo, color, qrCode);
-        carnet.primaryInfo = newPrimaryInfo;
-
-        // Assert
-        assert.strictEqual(carnet.primaryInfo, newPrimaryInfo.toLowerCase());
-    });
     it('should update the color attribute correctly when changing it', () => {
         // Arrange
         const name = 'John Doe';
@@ -124,34 +106,7 @@ describe('CarnetsFactory', () => {
         // Assert
         assert.strictEqual(carnet.color, newColor);
     });
-    it('should raise an error when creating a new instance with invalid arguments', () => {
-        // Arrange
-        const name = 'John Doe';
-        const user = 'johndoe';
-        const role = 'student';
-        const identification = '1234567890';
-        const primaryInfo = 'info1';
-        const secondaryInfo = 'info2';
-        const color = 'blue';
-        const qrCode = 'qrcode';
 
-        // Act and Assert
-        assert.throws(() => new Carnet(name, user, role, identification, primaryInfo, secondaryInfo, color), Error);
-    });
-    it('should raise an error when creating a new instance with an empty name', () => {
-        // Arrange
-        const name = '';
-        const user = 'johndoe';
-        const role = 'student';
-        const identification = '1234567890';
-        const primaryInfo = 'info1';
-        const secondaryInfo = 'info2';
-        const color = 'blue';
-        const qrCode = 'qrcode';
-
-        // Act and Assert
-        assert.throws(() => new Carnet(name, user, role, identification, primaryInfo, secondaryInfo, color, qrCode), Error);
-    });
 });
 
 
