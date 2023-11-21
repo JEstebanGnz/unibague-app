@@ -21,7 +21,7 @@ const onDetect = async (detectedCode) => {
     const route = 'users/byToken?token=' + scanedCode
     const response = await axios.get(route)
     userRoles.value = response.data;
-    console.log(scanedCode)
+    console.log(userRoles.value, 'users')
     clipBoard(userRoles.value[0].identification)
 
 }
@@ -30,10 +30,8 @@ const clipBoard = async (identification) => {
     try {
         await navigator.clipboard.writeText(identification)
         dataCopied.value = true;
-        console.error(dataCopied.value)
     } catch (err) {
         console.error('Error al copiar al portapapeles:', err)
-        dataCopied.value = false;
     }
 }
 
@@ -66,6 +64,7 @@ const clipBoard = async (identification) => {
                     </tr>
 
                     <tr v-for="user in userRoles"
+
                         class="px-8 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <template v-if="user.role === 'Graduado'">
                             <td class="py-4 px-6 font-bold">Programa finalizado:</td>

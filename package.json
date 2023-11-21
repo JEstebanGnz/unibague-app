@@ -22,6 +22,7 @@
   "type": "module",
   "dependencies": {
     "@inertiajs/inertia-vue3": "^0.6.0",
+    "@khmyznikov/pwa-install": "^0.2.7",
     "chai": "^4.3.10",
     "flowbite": "^1.8.1",
     "qrcode.vue": "^3.4.1",
