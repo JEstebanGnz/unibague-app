@@ -1,9 +1,9 @@
 {
     "name": "Unibague App",
-    "short_name": "short name",
-    "theme_color": "#fff",
-    "background_color": "#fff",
-    "display": "browser",
+    "short_name": "Unibague",
+    "theme_color": "#003D7C",
+    "background_color": "#003D7C",
+    "display": "standalone",
     "orientation": "portrait",
     "scope": "/",
     "start_url": "/",
