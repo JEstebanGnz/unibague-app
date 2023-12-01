@@ -27,15 +27,25 @@ const emit = defineEmits(['cambiarCarnet']);
         class="w-full h-full md:w-1/3 xl:w-2/6 flex flex-col md:h-full mx-auto bg-unibague-blue bg-opacity-3 rounded-xl mb-2 relative md:shadow-2xl">
         <div>
             <div class="relative flex" :style="{ background:color }">
-                <button class="absolute top-5 left-7" @click="$emit('cambiarCarnet')" v-if="showChangeButton">
+                <button class="absolute top-10 right-7" @click="$emit('cambiarCarnet')" v-if="showChangeButton">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-6 h-6 text-white">
                         <path stroke-linecap="round" stroke-linejoin="round"
                               d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/>
                     </svg>
                 </button>
-                <div class="flex justify-center items-center w-full mt-2">
-                    <img class="rounded-full w-2/5 md:w-2/5 md:h-4/5 h-5/6 border-white border-solid border-2 bg-white "
+                <button class="absolute top-10 left-7">
+                    <a href="/dashboard"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" class="w-6 h-6 text-white">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
+                    </svg>
+                    </a>
+
+                </button>
+                <div class="flex justify-center items-center w-full mt-2 h-1/4 pt-4">
+<!--                    <img class="rounded-2xl w-2/5 md:w-2/5 md:h-4/5 h-5/6 border-white border-solid border-2 bg-white object-contain "-->
+                    <img class="rounded-full mb-4 w-2/5 md:w-2/5 md:h-2/6 h-2/6 border-white border-solid border-2 bg-white object-contain "
                          :src="props.image"
                          alt="">
                 </div>
@@ -58,7 +68,7 @@ const emit = defineEmits(['cambiarCarnet']);
 
 
         <div
-            class=" px-12 lg:my-4 my-4 flex flex-col h-32 mx-auto font-bold text-lg xl:text-2xl justify-between text-center"
+            class=" px-12 lg:my-4 my-4 flex flex-col max-h-fit mx-auto font-bold text-lg xl:text-2xl justify-between text-center"
             :class="{'my-4': role === 'Funcionario'}">
             <h2>{{ role }}</h2>
             <h2>{{ identification }}</h2>
