@@ -29,7 +29,7 @@ class ModuleSeeder extends Seeder
             'icon' => '/Images/SIGA.svg',
             'visible' => true,
             'type' => 'ExternalComplexRedirect',
-            'payload' => '{"IOSLink":"https://apps.apple.com/co/app/unibague/id1560226102","androidLink":"https://siga.unibague.edu.co/sgacampus/","defaultLink":"https://siga.unibague.edu.co/sgacampus/"}',
+            'payload' => '{"IOSLink":"https://apps.apple.com/co/app/unibague/id1560226102","androidLink":"https://play.google.com/store/search?q=unibague&c=apps&hl=es_419&gl=US","defaultLink":"https://siga.unibague.edu.co/sgacampus/"}',
 
         ]);
 
