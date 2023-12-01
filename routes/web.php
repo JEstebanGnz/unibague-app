@@ -18,7 +18,6 @@ Route::get('/login', [\App\Http\Controllers\AuthController::class, 'redirect'] )
 Route::get('/login/google/callback', [\App\Http\Controllers\AuthController::class,'googleAuth']);
 Route::get('/', [\App\Http\Controllers\AuthController::class, 'authRedirect'] )->name('inicio');
 Route::get('/users/byToken', [\App\Http\Controllers\UserController::class,'getUserByToken'])->middleware(['auth']);
-//Route::get('/carnet',[\App\Http\Controllers\UserController::class,'getUserByToken']);
 Route::get('/carnet', [\App\Http\Controllers\CarnetController::class,'carnetView'])->middleware(['auth'])->name('carnet');
 Route::get('/scanner', [\App\Http\Controllers\ScannerController::class,'scannerView'] )->middleware(['auth'])->middleware('can:isScanner')->name('scanner');
 Route::get('/data', [\App\Http\Controllers\DataController::class,'userInfo'] )->middleware(['auth'])->name('personalInfo');
