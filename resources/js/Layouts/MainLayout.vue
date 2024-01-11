@@ -56,6 +56,9 @@ onMounted(() => {
         <div class="flex-1 flex items-center justify-center bg-unibague-blue bg-opacity-2">
             <slot></slot>
         </div>
+        <div class="-bottom-6 flex relative z-10 justify-end">
+            <img src="/Images/ardy.png" alt="" class="w-48  ">
+        </div>
         <div
             class="w-full h-20 bg-unibague-blue overflow-hidden flex items-center justify-between align-bottom px-8 relative">
             <div class="relative text-gray-300 text-md font-normal  capitalize">{{ user.name }}</div>
