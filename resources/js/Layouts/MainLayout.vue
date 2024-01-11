@@ -21,7 +21,7 @@ onMounted(() => {
                 class="relative md:px-28 px-10 bg-unibague-blue pt-2 md:pt-5 lg:pt-6 xl:pt-12 flex flex-row h-20 w-full justify-between items-center"
                 style="z-index: 2">
                 <div class="  text-white text-3xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-5xl font-bold">
-                    <a href="/dashboard">Unibague App</a>
+                    <a href="/dashboard">MiUnibagué</a>
 
                 </div>
                 <div class="w-12 h-12 ">

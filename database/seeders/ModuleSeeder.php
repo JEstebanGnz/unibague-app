@@ -16,7 +16,7 @@ class ModuleSeeder extends Seeder
     {
 
         Module::create([
-            'name' => 'Carnet',
+            'name' => 'Carné',
             'icon' => '/Images/carnet.svg',
             'visible' => true,
             'type' => 'InternalRedirect',
