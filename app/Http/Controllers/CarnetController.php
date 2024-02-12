@@ -14,9 +14,7 @@ class CarnetController extends Controller
         {
             $user = auth()->user();
             return Inertia::render('CarnetContainer', [
-
                 'qrCode' => $user->qrCode,
-
             ]);
         }
     }

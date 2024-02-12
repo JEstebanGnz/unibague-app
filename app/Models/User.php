@@ -72,7 +72,8 @@ class User extends Authenticatable
     public function getPersonalInfo()
     {
        $client = new CurlCobain(env("API_URL"));
-        $client ->setQueryParam('user',$this->getUser());
+       $client ->setQueryParam('user',$this->getUser());
+//        $client ->setQueryParam('user', 'david.gonzalez');
         $client ->setQueryParam('api_token','$2y$10$s/9xSDieUMEvYD/gfKqFAeFzvWXt13feXytgpJzQ9rZQrbGpBYUqo');
        $data = $client -> makeRequest();
 

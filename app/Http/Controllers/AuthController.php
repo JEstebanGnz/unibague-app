@@ -50,7 +50,6 @@ class AuthController extends Controller
     public function authRedirect () {
         {
             return redirect()->route('dashboard');
-
         }
     }
 }
