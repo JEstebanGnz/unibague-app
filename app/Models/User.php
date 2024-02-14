@@ -71,20 +71,17 @@ class User extends Authenticatable
 
     public function getPersonalInfo()
     {
-//       $client = new CurlCobain(env("API_URL"));
-//       $client ->setQueryParam('user',$this->getUser());
-////        $client ->setQueryParam('user', 'david.gonzalez');
-//        $client ->setQueryParam('api_token','$2y$10$s/9xSDieUMEvYD/gfKqFAeFzvWXt13feXytgpJzQ9rZQrbGpBYUqo');
-//       $data = $client -> makeRequest();
-
-
-        $client = new CurlCobain("https://academia.unibague.edu.co/atlante/appunibague/valida_usuario.php");
-        $client ->setQueryParam('usuario',$this->getUser());
+       $client = new CurlCobain(env("API_URL"));
+       $client ->setQueryParam('user',$this->getUser());
 //        $client ->setQueryParam('user', 'david.gonzalez');
-//        $client ->setQueryParam('api_token','$2y$10$s/9xSDieUMEvYD/gfKqFAeFzvWXt13feXytgpJzQ9rZQrbGpBYUqo');
-        $data = $client -> makeRequest();
+        $client ->setQueryParam('api_token','$2y$10$s/9xSDieUMEvYD/gfKqFAeFzvWXt13feXytgpJzQ9rZQrbGpBYUqo');
+       $data = $client -> makeRequest();
 
-
+//        $client = new CurlCobain("https://academia.unibague.edu.co/atlante/appunibague/valida_usuario.php");
+//        $client ->setQueryParam('usuario',$this->getUser());
+////        $client ->setQueryParam('user', 'david.gonzalez');
+////        $client ->setQueryParam('api_token','$2y$10$s/9xSDieUMEvYD/gfKqFAeFzvWXt13feXytgpJzQ9rZQrbGpBYUqo');
+//        $data = $client -> makeRequest();
 
         return json_decode($data);
     }
