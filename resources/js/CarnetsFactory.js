@@ -13,6 +13,9 @@ class CarnetsFactory {
                     newRole = new Carnet(element.name, element.user, "Funcionario", element.identification, element.department, element.position, "#FF5F2C")
                 }
                 if (element.role === "Graduado") {
+                    newRole = new Carnet(element.name, element.user, "Graduado", element.identification, element.finishedProgram, "", "#FFCC00")
+                }
+                if (element.role === "Egresado") {
                     newRole = new Carnet(element.name, element.user, "Egresado", element.identification, element.finishedProgram, "", "#FFCC00")
                 }
                 if (newRole) {
