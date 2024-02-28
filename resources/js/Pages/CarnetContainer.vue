@@ -12,13 +12,14 @@ const getUserInfo = async () =>{
     console.log(url)
     try {
         const response = await axios.get(url)
-        console.log(response.data)
+        if(response.data.length === 0){
+            return alert("El usuario no posee ningún carné activo o asociado, por favor comuníquese con g3@unibague.edu.co en dado caso de tener dudas")
+        }
         loading.value = false
         return response.data
     }
     catch (e){
-        console.log("No se obtuvo informacion",e)
-        return alert("El usuario no posee ningún carné activo o asociado, por favor comuníquese con g3@unibague.edu.co en dado caso de tener dudas")
+        return alert("Error interno del servidor, por favor intentelo más tarde")
     }
 }
 

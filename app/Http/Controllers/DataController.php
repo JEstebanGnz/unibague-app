@@ -10,11 +10,9 @@ class DataController extends Controller
     public function userInfo () {
         $user = auth()->user();
         $data = $user->getPersonalInfo();
-
-        if(count($data) === 0){
-            throw new \RuntimeException('El usuario no posee ningún carnet activo');
+        if($data === null){
+            throw new \RuntimeException();
         }
-
         return response()->json($data);
     }
 }
