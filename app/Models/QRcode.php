@@ -40,7 +40,7 @@ class QRcode extends Model
 
     public static function updateUsersQRcode() {
         // Increase max execution time to prevent the cronjob to fail
-        ini_set('max_execution_time', 500);
+        set_time_limit(1000);
         $secretValue = self::generateSecretValue();
         $batchSize = 100; // Processes 100 users at a time
         User::chunk($batchSize, function ($users) use ($secretValue) {
