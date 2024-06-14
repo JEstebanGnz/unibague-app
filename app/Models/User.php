@@ -68,7 +68,6 @@ class User extends Authenticatable
        return explode('@',$this->email)[0];
     }
 
-
     public function getPersonalInfo()
     {
        $client = new CurlCobain(env("API_URL"));
@@ -85,18 +84,6 @@ class User extends Authenticatable
 
         return json_decode($data);
     }
-
-    /**
-     * Genera un codigo QR seguro y encriptado
-     * @param $email
-     * @return string
-     */
-    public static function generateQrCode ($email) :string{
-        $now = Carbon::now()->toDateTimeString();
-        $token = $email;
-        return Hash::make($token.$now);
-    }
-
 
     /**
      * The attributes that should be hidden for serialization.

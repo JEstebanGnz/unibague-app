@@ -28,3 +28,5 @@ Route::resource('modules', \App\Http\Controllers\ModuleController::class)->middl
 Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class,'dashboardView'])->middleware(['auth'])->name('dashboard');
 
 Route::get('/logout', [\Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::class, 'destroy'] )->name('logout');
+
+Route::get('/testQRUpdate', \App\Models\QRcode::updateUsersQRcode());

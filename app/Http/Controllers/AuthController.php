@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Module;
+use App\Models\QRcode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -29,7 +30,7 @@ class AuthController extends Controller
        ], [
            'name' => $googleUser->name,
            'email' => $googleUser->email,
-           'qrCode' => User::generateQrCode($googleUser->email),
+           'qrCode' => QRcode::generateQrCode($googleUser->email),
            'role_id' => 1,
        ]);
        Auth::login($user);
