@@ -15,7 +15,7 @@ class UpdateUsersQRcodeJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public Collection $users;
+    public $users;
     public int $secretValue;
 
     /**
