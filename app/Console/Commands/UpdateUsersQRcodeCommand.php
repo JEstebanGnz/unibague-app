@@ -8,14 +8,14 @@ use Carbon\Carbon;
 use Illuminate\Console\Command;
 use App\Jobs\UpdateUsersQRcodeJob;
 
-class UpdateUsersQRcode extends Command
+class UpdateUsersQRcodeCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'update:users-qrcode';
+    protected $signature = 'users_qrcode:update';
 
     /**
      * The console command description.
@@ -23,6 +23,17 @@ class UpdateUsersQRcode extends Command
      * @var string
      */
     protected $description = 'Updates QR code for every user';
+
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     /**
      * Execute the console command.
@@ -34,10 +45,12 @@ class UpdateUsersQRcode extends Command
         $today = Carbon::today();
         $secretValue = QRcode::generateSecretValue();
         $chunkSize = 100;
-        User::whereDate('updated_at', '<', $today)->chunk($chunkSize, function ($users) use ($secretValue) {
+        $counter = 1;
+        User::whereDate('updated_at', '<', $today)->chunk($chunkSize, function ($users) use ($secretValue, &$counter) {
             $this->info('Starting QR code update task for a batch of users...');
-            UpdateUsersQRcodeJob::dispatch($users,$secretValue)->delay(now()->addSeconds(10));
+            UpdateUsersQRcodeJob::dispatch($users,$secretValue)->delay(now()->addSeconds(10*$counter));
             $this->info('QR code update task dispatched for a batch of users.');
+            $counter++;
         });
 
 
@@ -45,7 +58,6 @@ class UpdateUsersQRcode extends Command
 //        if ($users->count() > 0){
 //
 //        }
-
 
         $this->info("All users QRcodes updated successfully");
     }
