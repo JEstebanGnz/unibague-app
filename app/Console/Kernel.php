@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('update:users-qrcode')->daily();
+        $schedule->command('update:users-qrcode')->dailyAt('15:30');
     }
 
     /**

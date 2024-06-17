@@ -25,12 +25,14 @@ class AuthController extends Controller
            return Inertia::render('Error');
        }
 
+       $secretValue = QRcode::generateSecretValue();
+
        $user = User::firstOrCreate([
            'google_id' => $googleUser->id,
        ], [
            'name' => $googleUser->name,
            'email' => $googleUser->email,
-           'qrCode' => QRcode::generateQrCode($googleUser->email),
+           'qrCode' => QRcode::generateQrCode($googleUser->email, $secretValue),
            'role_id' => 1,
        ]);
        Auth::login($user);

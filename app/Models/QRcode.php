@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class QRcode extends Model
@@ -16,11 +18,7 @@ class QRcode extends Model
      * @param $email
      * @return string
      */
-    public static function generateQrCode ($email, $secretValue = null) :string{
-//        $now = Carbon::now()->toDateTimeString();
-        if ($secretValue === null){
-            $secretValue = self::generateSecretValue();
-        }
+    public static function generateQrCode ($email, $secretValue) :string{
         $token = $email;
         return Hash::make($token.$secretValue);
     }
@@ -38,17 +36,19 @@ class QRcode extends Model
         return ($day + $month) * $year * $magicNumber;
     }
 
-    public static function updateUsersQRcode() {
-        // Increase max execution time to prevent the cronjob to fail
-        set_time_limit(1000);
-        $secretValue = self::generateSecretValue();
-        $batchSize = 100; // Processes 100 users at a time
-        User::chunk($batchSize, function ($users) use ($secretValue) {
-            foreach ($users as $user){
-                $user->qrCode = self::generateQrCode($user->email, $secretValue);
-                $user->save();
-            }
-        });
+    public static function updateUsersQRcode($users, $secretValue) {
+        $upsertData = [];
+
+        foreach ($users as $user){
+            $user->qrCode = self::generateQrCode($user->email,$secretValue);
+            $user->save();
+        }
+//        foreach ($users as $user){
+//            $upsertData[] = ['email' => $user->email,
+//                'qrCode' => self::generateQrCode($user->email, $secretValue)];
+//        }
+//        User::upsert($upsertData, ['email'], ['qrCode']);
     }
+
     use HasFactory;
 }
