@@ -48,17 +48,13 @@ class UpdateUsersQRcodeCommand extends Command
         $counter = 1;
         User::whereDate('updated_at', '<', $today)->chunk($chunkSize, function ($users) use ($secretValue, &$counter) {
             $this->info('Starting QR code update task for a batch of users...');
-            UpdateUsersQRcodeJob::dispatch($users,$secretValue)->delay(now()->addSeconds(10*$counter));
+            // Dispatch the job for this chunk of users
+            foreach ($users as $user) {
+                UpdateUsersQRcodeJob::dispatch($user, $secretValue)->delay(now()->addSeconds(10 * $counter));
+            }
             $this->info('QR code update task dispatched for a batch of users.');
             $counter++;
         });
-
-
-//        $users = User::whereDate('updated_at', '<', $today)->take(100)->get();
-//        if ($users->count() > 0){
-//
-//        }
-
         $this->info("All users QRcodes updated successfully");
     }
 }

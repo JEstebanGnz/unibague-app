@@ -38,10 +38,10 @@ class QRcode extends Model
 
         public static function updateUsersQRcode($users, $secretValue) {
 //        $upsertData = [];
-    foreach ($users as $user){
-    $user->qrCode = self::generateQrCode($user->email,$secretValue);
-    $user->update();
-}
+
+    $users->qrCode = self::generateQrCode($users->email,$secretValue);
+    $users->update();
+
     }
 
     use HasFactory;
