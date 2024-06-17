@@ -37,19 +37,22 @@ class QRcode extends Model
     }
 
         public static function updateUsersQRcode($users, $secretValue) {
-        $upsertData = [];
-        foreach ($users as $user){
-            $upsertData[] = ['email' => $user->email,
-                'qrCode' => self::generateQrCode($user->email, $secretValue)];
-        }
-        User::upsert($upsertData, ['email'], ['qrCode']);
+//        $upsertData = [];
+    foreach ($users as $user){
+    $user->qrCode = self::generateQrCode($user->email,$secretValue);
+    $user->save();
+}
     }
 
     use HasFactory;
 }
 
 
+
+//
+//$upsertData = [];
 //foreach ($users as $user){
-//    $user->qrCode = self::generateQrCode($user->email,$secretValue);
-//    $user->save();
+//    $upsertData[] = ['email' => $user->email,
+//        'qrCode' => self::generateQrCode($user->email, $secretValue)];
 //}
+//User::upsert($upsertData, ['email'], ['name', 'qrCode']);
