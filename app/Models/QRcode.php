@@ -40,7 +40,7 @@ class QRcode extends Model
 //        $upsertData = [];
     foreach ($users as $user){
     $user->qrCode = self::generateQrCode($user->email,$secretValue);
-    $user->save();
+    $user->update();
 }
     }
 
