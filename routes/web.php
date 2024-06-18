@@ -33,11 +33,11 @@ Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class,'dash
 
 Route::get('/logout', [\Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::class, 'destroy'] )->name('logout');
 
-Route::get('/testQRUpdate', function (){
-    $today = Carbon::today();
-    $secretValue = QRcode::generateSecretValue();
-    DB::table('users')->whereDate('updated_at','<', $today)
-        ->chunkById(100, function ($users) use($secretValue){
-            UpdateUsersQRcodeJob::dispatch($users, $secretValue)->delay(now()->addSeconds(20));
-        });
-});
+//Route::get('/testQRUpdate', function (){
+//    $today = Carbon::today();
+//    $secretValue = QRcode::generateSecretValue();
+//    DB::table('users')->whereDate('updated_at','<', $today)
+//        ->chunkById(100, function ($users) use($secretValue){
+//            UpdateUsersQRcodeJob::dispatch($users, $secretValue)->delay(now()->addSeconds(20));
+//        });
+//});
