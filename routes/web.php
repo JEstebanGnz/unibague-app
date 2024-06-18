@@ -1,5 +1,9 @@
 <?php
 
+use App\Jobs\UpdateUsersQRcodeJob;
+use App\Models\QRcode;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 /*
@@ -29,13 +33,11 @@ Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class,'dash
 
 Route::get('/logout', [\Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::class, 'destroy'] )->name('logout');
 
-/*Route::get('/testQRUpdate', function (){
-
-    $today = \Carbon\Carbon::today();
-
-    $user = \Illuminate\Support\Facades\DB::table('users')->whereDate('updated_at','<', $today)->first();
-
-    dd($user);
-
-//    \Illuminate\Support\Facades\DB::table('users')->where()
-});*/
+Route::get('/testQRUpdate', function (){
+    $today = Carbon::today();
+    $secretValue = QRcode::generateSecretValue();
+    DB::table('users')->whereDate('updated_at','<', $today)
+        ->chunkById(100, function ($users) use($secretValue){
+            UpdateUsersQRcodeJob::dispatch($users, $secretValue)->delay(now()->addSeconds(20));
+        });
+});

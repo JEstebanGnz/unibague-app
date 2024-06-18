@@ -7,6 +7,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use App\Jobs\UpdateUsersQRcodeJob;
+use Illuminate\Support\Facades\DB;
 
 class UpdateUsersQRcodeCommand extends Command
 {
@@ -44,17 +45,24 @@ class UpdateUsersQRcodeCommand extends Command
         //The condition is that updated_at is smaller than today's date
         $today = Carbon::today();
         $secretValue = QRcode::generateSecretValue();
+        DB::table('users')->whereDate('updated_at','<', $today)
+            ->chunkById(100, function ($users) use($secretValue){
+                $this->info('Starting QR code update task for a batch of users...');
+                UpdateUsersQRcodeJob::dispatch($users, $secretValue)->delay(now()->addSeconds(20));
+                $this->info('QR code update task dispatched for a batch of users.');
+        });
+        $this->info("All users QRcodes updated successfully");
+
+        /*
         $chunkSize = 100;
         $counter = 1;
         User::whereDate('updated_at', '<', $today)->chunk($chunkSize, function ($users) use ($secretValue, &$counter) {
-            $this->info('Starting QR code update task for a batch of users...');
             // Dispatch the job for this chunk of users
             foreach ($users as $user) {
-                UpdateUsersQRcodeJob::dispatch($user, $secretValue)->delay(now()->addSeconds(10 * $counter));
+
             }
-            $this->info('QR code update task dispatched for a batch of users.');
+
             $counter++;
-        });
-        $this->info("All users QRcodes updated successfully");
+        });*/
     }
 }

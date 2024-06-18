@@ -36,13 +36,15 @@ class QRcode extends Model
         return ($day + $month) * $year * $magicNumber;
     }
 
-        public static function updateUsersQRcode($users, $secretValue) {
-//        $upsertData = [];
-
-    $users->qrCode = self::generateQrCode($users->email,$secretValue);
-    $users->update();
-
-    }
+        public static function updateUsersQRcode($users, $secretValue)
+        {
+            $now = Carbon::now()->toDateTimeString();
+            foreach ($users as $user) {
+                DB::table('users')
+                    ->where('id', $user->id)
+                    ->update(['qrCode' => self::generateQrCode($user->email, $secretValue), 'updated_at' => $now]);
+            }
+        }
 
     use HasFactory;
 }
