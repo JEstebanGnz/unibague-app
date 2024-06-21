@@ -19,8 +19,8 @@ class QRcode extends Model
      * @return string
      */
     public static function generateQrCode ($email, $secretValue) :string{
-        $token = $email;
-        return Hash::make($token.$secretValue);
+        return encrypt($email.$secretValue);
+//        return Hash::make($token.$secretValue);
     }
 
     /**
