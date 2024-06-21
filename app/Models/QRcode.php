@@ -19,10 +19,22 @@ class QRcode extends Model
      * @return string
      */
     public static function generateQrCode ($email, $secretValue) :string{
-        return encrypt($email.$secretValue);
+        return self::getEncryptedQRCodeData($email, $secretValue);
 //        return Hash::make($token.$secretValue);
     }
 
+    public static function getEncryptedQRCodeData($email, $secretValue): string{
+        $secretKey= Env('SECRET_KEY');
+        $textToEncrypt = $email.$secretValue;
+        //Initialization vector is used to ensure that the text is correctly encrypted
+        $initializationVector = openssl_random_pseudo_bytes(
+            openssl_cipher_iv_length('aes-256-cbc'));
+        $ciphertext = openssl_encrypt($textToEncrypt,
+            'aes-256-cbc',
+            $secretKey, 0,
+            $initializationVector);
+        return base64_encode($initializationVector . $ciphertext);
+    }
     /**
      * Generates a secret value that changes every day, it allows the QR to be dynamic
      * @return int
