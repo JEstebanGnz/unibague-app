@@ -20,20 +20,18 @@ class QRcode extends Model
      */
     public static function generateQrCode ($email, $secretValue) :string{
         return self::getEncryptedQRCodeData($email, $secretValue);
-//        return Hash::make($token.$secretValue);
     }
 
     public static function getEncryptedQRCodeData($email, $secretValue): string{
         $secretKey= Env('SECRET_KEY');
         $textToEncrypt = $email.$secretValue;
-        //Initialization vector is used to ensure that the text is correctly encrypted
-        $initializationVector = openssl_random_pseudo_bytes(
-            openssl_cipher_iv_length('aes-256-cbc'));
-        $ciphertext = openssl_encrypt($textToEncrypt,
-            'aes-256-cbc',
-            $secretKey, 0,
-            $initializationVector);
-        return base64_encode($initializationVector . $ciphertext);
+        $output = '';
+        $inputLength = strlen($textToEncrypt);
+        $keyLength = strlen($secretKey);
+        for ($i = 0; $i < $inputLength; $i++) {
+            $output .= $textToEncrypt[$i] ^ $secretKey[$i % $keyLength];
+        }
+        return $output;
     }
     /**
      * Generates a secret value that changes every day, it allows the QR to be dynamic
@@ -48,15 +46,15 @@ class QRcode extends Model
         return ($day + $month) * $year * $magicNumber;
     }
 
-        public static function updateUsersQRcode($users, $secretValue)
-        {
-            $now = Carbon::now()->toDateTimeString();
-            foreach ($users as $user) {
-                DB::table('users')
-                    ->where('id', $user->id)
-                    ->update(['qrCode' => self::generateQrCode($user->email, $secretValue), 'updated_at' => $now]);
-            }
+    public static function updateUsersQRcode($users, $secretValue)
+    {
+        $now = Carbon::now()->toDateTimeString();
+        foreach ($users as $user) {
+            DB::table('users')
+                ->where('id', $user->id)
+                ->update(['qrCode' => self::generateQrCode($user->email, $secretValue), 'updated_at' => $now]);
         }
+    }
 
     use HasFactory;
 }

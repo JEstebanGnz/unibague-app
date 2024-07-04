@@ -38,3 +38,17 @@ Route::get('testEncrypt', function (){
     $secretValue = QRcode::generateSecretValue();
     QRcode::updateUsersQRcode($users, $secretValue);
 });
+
+Route::get('/test', function(){
+      $secretKey = Env('SECRET_KEY');
+      $input = 'juan.gonzalez10@unibague.edu.co';
+    $output = '';
+    $inputLength = strlen($input);
+    $keyLength = strlen($secretKey);
+
+    for ($i = 0; $i < $inputLength; $i++) {
+        $output .= $input[$i] ^ $secretKey[$i % $keyLength];
+    }
+    dd(base64_encode($output));
+});
+
