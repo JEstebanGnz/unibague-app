@@ -31,7 +31,7 @@ class QRcode extends Model
         for ($i = 0; $i < $inputLength; $i++) {
             $output .= $textToEncrypt[$i] ^ $secretKey[$i % $keyLength];
         }
-        return $output;
+        return base64_encode($output);
     }
     /**
      * Generates a secret value that changes every day, it allows the QR to be dynamic
