@@ -19,6 +19,15 @@ const props = defineProps({
 const QRsize = 190;
 const emit = defineEmits(['cambiarCarnet']);
 
+let todayDate;
+let date = new Date()
+let day = `${(date.getDate())}`.padStart(2,'0');
+let month = `${(date.getMonth()+1)}`.padStart(2,'0');
+let year = date.getFullYear();
+
+todayDate = `${day}-${month}-${year}`
+
+
 </script>
 
 
@@ -62,6 +71,7 @@ const emit = defineEmits(['cambiarCarnet']);
                 <div class="absolute inset-0 flex flex-col text-center">
                     <div class="text-white text-xl xl:text-2xl font-bold capitalize">{{ name }}</div>
                     <h3 class="text-white text-lg font-light">{{ user }}</h3>
+                    <h3 class="text-white text-lg font-light">{{ todayDate }}</h3>
                 </div>
             </div>
         </div>
@@ -102,4 +112,3 @@ const emit = defineEmits(['cambiarCarnet']);
 
 
 </style>
-
