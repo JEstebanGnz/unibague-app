@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -73,7 +74,9 @@ class UserController extends Controller
         if(!$alreadyScannedUser){
             DB::table('scanned_users')
                 ->insert(['user_id' => $userId,
-                        'scanned_by' => $scannedBy]);
+                        'scanned_by' => $scannedBy,
+                        'created_at' => Carbon::now()->toDateTimeString(),
+                    'updated_at' => Carbon::now()->toDateTimeString()]);
         }
         return $userFound->getPersonalInfo();
     }
