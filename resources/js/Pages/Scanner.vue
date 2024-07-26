@@ -2,7 +2,8 @@
 import {ref} from 'vue';
 import {QrcodeStream, QrcodeDropZone, QrcodeCapture} from 'vue-qrcode-reader'
 import MainLayout from "@/Layouts/MainLayout.vue";
-
+import {toast, updateGlobalOptions} from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css'
 
 const MyComponent = {
     components: {
@@ -16,14 +17,15 @@ let dataCopied = ref(false);
 let userRoles = ref([]);
 
 const onDetect = async (detectedCode) => {
-
     let scanedCode = detectedCode[0].rawValue;
     const route = 'users/byToken?token=' + scanedCode
     const response = await axios.get(route)
     userRoles.value = response.data;
+    toast.success('Código QR escaneado correctamente', {
+        autoClose: 3000,
+    })
     console.log(userRoles.value, 'users')
     clipBoard(userRoles.value[0].identification)
-
 }
 
 const clipBoard = async (identification) => {

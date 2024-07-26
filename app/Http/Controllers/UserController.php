@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use DB;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -62,7 +63,18 @@ class UserController extends Controller
     {
         $token = $request -> input('token');
         $userFound = User::where('qrCode','=',$token)->first();
-        return $userFound->getPersonalInfo();
+        {/* Now that the user was found, also save that user on the list of scanned users*/ }
+        $userId = $userFound->id;
+        $scannedBy = auth()->user()->id;
 
+        //If the user has already been scanned, then don't insert the record
+        $alreadyScannedUser = DB::table('scanned_users')
+            ->where('user_id','=', $userId)->first();
+        if(!$alreadyScannedUser){
+            DB::table('scanned_users')
+                ->insert(['user_id' => $userId,
+                        'scanned_by' => $scannedBy]);
+        }
+        return $userFound->getPersonalInfo();
     }
 }

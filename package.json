@@ -28,6 +28,8 @@
     "qrcode.vue": "^3.4.1",
     "tw-elements": "^1.0.0",
     "vue-qrcode-reader": "^5.3.3",
-    "vue-router": "^4.2.4"
+    "vue-router": "^4.2.4",
+    "vue3-snackbar": "^2.3.2",
+    "vue3-toastify": "^0.2.2"
   }
 }
