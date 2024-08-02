@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens; */
 
+use DB;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -46,4 +47,10 @@ class Role extends Model
     {
         return $this->belongsToMany(Module::class);
     }
+
+
+    public static function getRoleIdByName($roleName) {
+        return DB::table('roles')->where('name','=',  $roleName)->first()->id;
+    }
+
 }

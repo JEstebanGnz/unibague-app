@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Module;
 use App\Models\QRcode;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -25,6 +26,12 @@ class AuthController extends Controller
            return Inertia::render('Error');
        }
 
+       {/* Now the user role is determined by the domain*/}
+        if ($email[1] === 'unibague.edu.co'){
+            $roleId = Role::getRoleIdByName('funcionario');
+        } else{
+            $roleId = Role::getRoleIdByName('user');
+        }
        $secretValue = QRcode::generateSecretValue();
 
        $user = User::firstOrCreate([
@@ -33,7 +40,7 @@ class AuthController extends Controller
            'name' => $googleUser->name,
            'email' => $googleUser->email,
            'qrCode' => QRcode::generateQrCode($googleUser->email, $secretValue),
-           'role_id' => 1,
+           'role_id' => $roleId,
        ]);
        Auth::login($user);
 
