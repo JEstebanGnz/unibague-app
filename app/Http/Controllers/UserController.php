@@ -78,11 +78,11 @@ class UserController extends Controller
 
         //If the user has already been scanned on that event, then don't insert the record
         $alreadyScannedUser = DB::table('scanned_users')
-            ->where('user_id', '=', $userId)->where('event_id', '=', $event->id)->first();
+            ->where('user_id', '=', $userId)->where('event_id', '=', $event['id'])->first();
         if (!$alreadyScannedUser) {
             DB::table('scanned_users')
                 ->insert(['user_id' => $userId,
-                    'event_id' => $event->id,
+                    'event_id' => $event['id'],
                     'scanned_by' => $scannedBy,
                     'created_at' => Carbon::now()->toDateTimeString(),
                     'updated_at' => Carbon::now()->toDateTimeString()]);
