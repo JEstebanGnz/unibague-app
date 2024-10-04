@@ -18,14 +18,6 @@ onMounted(() => {
                   d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
         </svg>
     </button>
-    <div class="flex flex-row justify-around items-center pt-2">
-        <div class="md:h-20 left-48 flex items-center h-6">
-            <div class="text-4xl font-semibold text-unibague-blue">
-                Dashboard
-            </div>
-        </div>
-
-    </div>
     <aside id="separator-sidebar"
            class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full md:translate-x-0"
            aria-label="Sidebar">
@@ -52,9 +44,17 @@ onMounted(() => {
                 <li>
                     <a href="/modules"
                        class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-white/10 dark:hover:bg-gray-700 group">
-                        <span class="flex-1 ml-3 whitespace-nowrap">Modulos</span>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Módulos</span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="/eventos"
+                       class="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-white/10 dark:hover:bg-gray-700 group">
+                        <span class="flex-1 ml-3 whitespace-nowrap">Eventos</span>
+                    </a>
+                </li>
+
             </ul>
             <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                 <li>
@@ -65,7 +65,7 @@ onMounted(() => {
                             <path stroke-linecap="round" stroke-linejoin="round"
                                   d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
                         </svg>
-                        <span class="ml-4">Ir al inicio</span>
+                        <span class="ml-4">Inicio</span>
                     </a>
                 </li>
 

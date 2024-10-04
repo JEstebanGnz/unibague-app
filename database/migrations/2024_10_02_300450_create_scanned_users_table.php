@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('scanned_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('event_id')->constrained()->onDelete('cascade');
             $table->foreignId('scanned_by');
             $table->foreign('scanned_by')->references('id')->on('users');
             $table->timestamps();

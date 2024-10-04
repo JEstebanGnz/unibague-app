@@ -55,6 +55,11 @@ const refreshUser = (userId) => {
 <template>
     <AdminPannel class="bg-unibague-blue bg-opacity-5">
         <div>
+
+            <div class="text-4xl font-semibold text-unibague-blue" style="text-align:center">
+                Gestionar Usuarios
+            </div>
+
             <div class="flex flex-col mt-8 mx-6 ">
                 <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                     <div

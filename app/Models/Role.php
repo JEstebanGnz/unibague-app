@@ -48,7 +48,6 @@ class Role extends Model
         return $this->belongsToMany(Module::class);
     }
 
-
     public static function getRoleIdByName($roleName) {
         return DB::table('roles')->where('name','=',  $roleName)->first()->id;
     }

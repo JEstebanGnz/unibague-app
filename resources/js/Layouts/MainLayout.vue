@@ -62,7 +62,7 @@ onMounted(() => {
         <div
             class="w-full h-20 bg-unibague-blue overflow-hidden flex items-center justify-between align-bottom px-8 relative">
             <div class="relative text-gray-300 text-md font-normal  capitalize">{{ user.name }}</div>
-            <div class="relative text-gray-300 text-md font-normal italic"> Version 1.0</div>
+            <div class="relative text-gray-300 text-md font-normal italic"> Versión 2.0 !</div>
         </div>
     </div>
 </template>

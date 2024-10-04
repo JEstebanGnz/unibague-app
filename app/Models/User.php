@@ -85,6 +85,13 @@ class User extends Authenticatable
         return json_decode($data);
     }
 
+
+    public function eventsAdministrator(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Event::class, 'event_administrators', 'user_id', 'event_id');
+    }
+
+
     /**
      * The attributes that should be hidden for serialization.
      *
