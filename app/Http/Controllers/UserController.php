@@ -66,27 +66,41 @@ class UserController extends Controller
         return Inertia::render('User/Index')->with('success', 'Company has been created successfully.');
     }
 
+    public function getUserRole(Request $request){
+        $user = auth()->user();
+        return response()->json($user->role);
+    }
+
 
     public function getUserByToken(Request $request)
     {
         $token = $request->input('token');
         $userFound = User::where('qrCode', '=', $token)->first();
         $event = $request->input('event');
+        $personalInfo = $userFound->getPersonalInfo();
 
-        $userId = $userFound->id;
-        $scannedBy = auth()->user()->id;
-
-        //If the user has already been scanned on that event, then don't insert the record
-        $alreadyScannedUser = DB::table('scanned_users')
-            ->where('user_id', '=', $userId)->where('event_id', '=', $event['id'])->first();
-        if (!$alreadyScannedUser) {
-            DB::table('scanned_users')
-                ->insert(['user_id' => $userId,
-                    'event_id' => $event['id'],
-                    'scanned_by' => $scannedBy,
-                    'created_at' => Carbon::now()->toDateTimeString(),
-                    'updated_at' => Carbon::now()->toDateTimeString()]);
+        if($personalInfo == null){
+            throw new \Error('Usuario reconocido, pero ocurrió un error al obtener su información personal.') ;
         }
-        return $userFound->getPersonalInfo();
+
+        try {
+            if ($event !== null) {
+                $scannedBy = auth()->user()->id;
+                $userId = $userFound->id;
+                //If the user has already been scanned on that event, then don't insert the record
+                $alreadyScannedUser = DB::table('scanned_users')
+                    ->where('user_id', '=', $userId)->where('event_id', '=', $event['id'])->first();
+                if (!$alreadyScannedUser) {
+                    DB::table('scanned_users')
+                        ->insert(['user_id' => $userId,
+                            'event_id' => $event['id'], 'scanned_by' => $scannedBy, 'created_at' => Carbon::now()->toDateTimeString(),
+                            'updated_at' => Carbon::now()->toDateTimeString()]);
+                }
+                return response()->json(['message' => 'Usuario escaneado y añadido a la lista de asistentes al evento.', 'personalInfo' => $personalInfo]);
+            }
+            return response()->json(['message' => 'Usuario escaneado correctamente.', 'personalInfo' => $personalInfo]);
+        } catch (\Throwable $th) {
+            throw new \Error('Error al momento de escanear el usuario, intente nuevamente.');
+        }
     }
 }

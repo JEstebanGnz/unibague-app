@@ -23,11 +23,12 @@ use Inertia\Inertia;
 Route::get('/login', [\App\Http\Controllers\AuthController::class, 'redirect'] )->name('login');
 Route::get('/login/google/callback', [\App\Http\Controllers\AuthController::class,'googleAuth']);
 Route::get('/', [\App\Http\Controllers\AuthController::class, 'authRedirect'] )->name('inicio');
-Route::post('/users/byToken', [\App\Http\Controllers\UserController::class,'getUserByToken'])->middleware(['auth']);
+Route::post('/users/byToken', [\App\Http\Controllers\UserController::class,'getUserByToken']);
 Route::get('/carnet', [\App\Http\Controllers\CarnetController::class,'carnetView'])->middleware(['auth'])->name('carnet');
 Route::get('/scanner', [\App\Http\Controllers\ScannerController::class,'scannerView'] )->middleware(['auth'])->middleware('can:isScanner')->name('scanner');
 Route::get('/data', [\App\Http\Controllers\DataController::class,'userInfo'] )->middleware(['auth'])->name('personalInfo');
 Route::resource('roles', \App\Http\Controllers\RoleController::class)->middleware(['auth'])->middleware('can:isAdmin');
+Route::get('/user/role', [\App\Http\Controllers\UserController::class,'getUserRole'] )->middleware(['auth'])->name('user.role');
 Route::resource('users', \App\Http\Controllers\UserController::class)->middleware(['auth'])->middleware('can:isAdmin');
 Route::get('/allUsers', [\App\Http\Controllers\UserController::class,'allUsers'])->name('api.users.index');
 
@@ -60,6 +61,9 @@ Route::inertia('/eventos', 'Events/Index')->middleware(['auth'])->middleware('ca
 
 Route::get('/events/user', [\App\Http\Controllers\EventController::class, 'getUserEvents'])->name('events.user');
 
+Route::get('/events/{eventId}/report', [\App\Http\Controllers\EventController::class, 'getUserEvents'])->name('events.report');
+
 Route::resource('events', \App\Http\Controllers\EventController::class,
     [  'as' => 'api']);
+
 

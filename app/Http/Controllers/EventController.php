@@ -43,8 +43,6 @@ class EventController extends Controller
             'end_date' => 'required|date|after_or_equal:start_date',
         ], $messages);
         try {
-
-
             // Convert start_date and end_date from UTC to America/Bogota (Colombia) timezone
             $startDateUtc = Carbon::parse($validatedData['start_date']); // Parse UTC date
             $endDateUtc = Carbon::parse($validatedData['end_date']); // Parse UTC date
@@ -143,18 +141,23 @@ class EventController extends Controller
     }
 
     public function getUserEvents(Request $request){
-
         $user = auth()->user();
-
         //Traerse los eventos EN CURSO, es decir que start date <= now y end date > now
         $userEvents = \DB::table('event_administrators')->where('user_id', $user->id)->get()->pluck('event_id')->toArray();
-
         //I have the user events, now I have to see if those events are EN CURSO
         $availableEvents = \DB::table('events')->whereIn('id', $userEvents)
             ->where('start_date', '<=', Carbon::now())
                 ->where('end_date', '>', Carbon::now())->get();
-
         return response()->json($availableEvents);
+    }
+
+    public function generateReport(Event $event){
+
+        $headers = ['Nombre', 'Correo', 'Hora Registro asistencia'];
+
+
+
+
     }
 
 

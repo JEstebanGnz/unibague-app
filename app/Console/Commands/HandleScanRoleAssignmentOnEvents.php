@@ -30,14 +30,15 @@ class HandleScanRoleAssignmentOnEvents extends Command
 
         // Assign the scanner role when event starts
         $scanRoleId = Role::getRoleIdByName('scan');
+        $adminRoleId = Role::getRoleIdByName('admin');
         $eventsStarting = Event::where('start_date', '<=', Carbon::now())
             ->where('end_date', '>', Carbon::now())
             ->get();
 
         foreach ($eventsStarting as $event) {
-            foreach ($event->administrators as $admin) {
-                if ($admin->role_id !== $scanRoleId) {
-                    \DB::table('users')->where('id', $admin->id)->update(['role_id' => $scanRoleId]);
+            foreach ($event->administrators as $user) {
+                if ($user->role_id !== $scanRoleId && $user->role_id !== $adminRoleId) {
+                    \DB::table('users')->where('id', $user->id)->update(['role_id' => $scanRoleId]);
                 }
             }
         }
@@ -47,9 +48,9 @@ class HandleScanRoleAssignmentOnEvents extends Command
         $eventsEnding = Event::where('end_date', '<=', Carbon::now())->get();
 
         foreach ($eventsEnding as $event) {
-            foreach ($event->administrators as $admin) {
-                if ($admin->role_id !== $functionaryRoleId) {
-                    \DB::table('users')->where('id', $admin->id)->update(['role_id' => $functionaryRoleId]);
+            foreach ($event->administrators as $user) {
+                if ($user->role_id !== $functionaryRoleId && $user->role_id !== $adminRoleId) {
+                    \DB::table('users')->where('id', $user->id)->update(['role_id' => $functionaryRoleId]);
                 }
             }
         }
