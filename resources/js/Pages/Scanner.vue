@@ -115,13 +115,14 @@ export default defineComponent({
     },
     methods: {
 
-        // async dummyUserToTest(){
-        //     this.testScannedCode = '$2y$10$CKQv/rA3hn4pSZ/vDxp0Lerr6AzvqvZ40v0ebORyt.FAYN39s8rrW'
-        //     await this.onDetect();
-        // },
+        async dummyUserToTest(){
+            this.testScannedCode = '$2y$10$UEpTgUJK2F3HDDyuPk.G1u.6L/jDmoGxdim1LQVZPcxYavmNgDybq'
+            await this.onDetect();
+        },
 
         async onDetect(detectedCode) {
-            let scannedCode = detectedCode[0].rawValue;
+            // let scannedCode = detectedCode[0].rawValue;
+            let scannedCode = this.testScannedCode;
             const route = 'users/byToken?token=' + scannedCode;
             try {
                 const response = await axios.post(route,{event: this.selectedEvent});

@@ -76,11 +76,12 @@ class UserController extends Controller
     {
         $token = $request->input('token');
         $userFound = User::where('qrCode', '=', $token)->first();
+
         $event = $request->input('event');
         $personalInfo = $userFound->getPersonalInfo();
 
         if($personalInfo == null){
-            throw new \Error('Usuario reconocido, pero ocurrió un error al obtener su información personal.') ;
+            throw new \Error('Código QR no válido.') ;
         }
 
         try {

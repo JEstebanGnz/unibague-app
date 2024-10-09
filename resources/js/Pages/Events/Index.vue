@@ -32,11 +32,9 @@
                     {{ event.administrators.map(admin => admin.name).join(', ') }}
                 </td>
                 <td class="py-4 px-6">
-                    <!-- Edit Button -->
-                    <button class="text-green-600 hover:text-green-800 mr-4" @click="openEditModal(event)">Editar
-                    </button>
-                    <!-- Delete Button -->
+                    <button class="text-green-600 hover:text-green-800 mr-4" @click="openEditModal(event)">Editar</button>
                     <button class="text-red-600 hover:text-red-800" @click="deleteEvent(event.id)">Borrar</button>
+                    <button class="text-blue-600 hover:text-blue-800" @click="downloadReport(event.id)">Descargar Reporte</button>
                 </td>
             </tr>
             </tbody>
@@ -134,8 +132,38 @@ export default {
                 await this.getEvents(); // Refresh events list
             }
         },
+
+        async downloadReport(eventId){
+            try {
+                const response = await axios.get(`/events/${eventId}/report`, {
+                        responseType: 'blob' // This is important for binary data (like files)
+                });
+
+                // Create a blob and download the file
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'Reporte_Asistencia.xlsx'); // Use the filename from the header
+                document.body.appendChild(link);
+                link.click();
+                // Cleanup
+                link.remove();
+            } catch (e){
+                // Handle 404 or empty case
+                if (e.response && e.response.status === 404) {
+                    toast.error('El evento no posee asistentes registrados', {
+                        autoClose: 4000,
+                    });
+                }
+                else{
+                    // Handle other errors
+                    toast.error('Error downloading the report', {
+                        autoClose: 4000,
+                    });
+                }
+            }
+        }
     }
-    ,
 }
 ;
 </script>

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\EventReport;
 use App\Models\Event;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EventController extends Controller
 {
@@ -151,13 +154,24 @@ class EventController extends Controller
         return response()->json($availableEvents);
     }
 
-    public function generateReport(Event $event){
+    public function generateReport(Event $eventId){
 
         $headers = ['Nombre', 'Correo', 'Hora Registro asistencia'];
+        $event = $eventId;
 
+        //Method to return the data;
+        $scannedEventUsersData = DB::table('scanned_users as su')
+            ->select(['u.name','u.email','su.updated_at'])->where('event_id', '=', $event->id)
+            ->join('users as u', 'u.id', '=', 'su.user_id')->orderBy('su.updated_at')->get();
 
+        // If no attendees are registered, return a message
+        if ($scannedEventUsersData->isEmpty()) {
+            return response()->json([
+                'message' => 'El evento no posee asistentes registrados'
+            ], 404);
+        }
 
-
+        return Excel::download(new EventReport($scannedEventUsersData,$headers), $event->name . '.xlsx');
     }
 
 

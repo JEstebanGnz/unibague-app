@@ -123,29 +123,26 @@ const refreshModules = (moduleId) => {
                     <div
                         class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
                         <table class="min-w-full">
-                            <thead>
+                            <thead class="bg-unibague-blue text-white">
                             <tr>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                <th class="px-6 py-3">
                                     Nombre
                                 </th>
-
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                <th class="px-6 py-3">
                                     Icono
                                 </th>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                <th class="px-6 py-3">
                                     Tipo
                                 </th>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                <th class="px-6 py-3">
                                     Visibilidad
                                 </th>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                <th class="px-6 py-3">
                                     Editar
                                 </th>
-                                <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                <th class="px-6 py-3">
                                     Eliminar
                                 </th>
-
-
                             </tr>
                             </thead>
 

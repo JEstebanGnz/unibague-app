@@ -61,7 +61,7 @@ Route::inertia('/eventos', 'Events/Index')->middleware(['auth'])->middleware('ca
 
 Route::get('/events/user', [\App\Http\Controllers\EventController::class, 'getUserEvents'])->name('events.user');
 
-Route::get('/events/{eventId}/report', [\App\Http\Controllers\EventController::class, 'getUserEvents'])->name('events.report');
+Route::get('/events/{eventId}/report', [\App\Http\Controllers\EventController::class, 'generateReport'])->name('events.report');
 
 Route::resource('events', \App\Http\Controllers\EventController::class,
     [  'as' => 'api']);
